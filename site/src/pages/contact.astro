@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
-import Card from '../components/Card.astro';
+import DataRibbon from '../components/DataRibbon.astro';
 import CTASection from '../components/CTASection.astro';
 ---
 
@@ -15,9 +15,13 @@ import CTASection from '../components/CTASection.astro';
   <!-- Contact Content -->
   <section class="section">
     <div class="container">
+      <div class="section-intro">
+        <DataRibbon variant="section" />
+      </div>
+
       <div class="contact-grid">
         <!-- Email -->
-        <Card variant="glass" edgeLit class="contact-card">
+        <div class="contact-card glass glass--edge-lit">
           <div class="contact-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -25,17 +29,17 @@ import CTASection from '../components/CTASection.astro';
           </div>
           <h3>Email</h3>
           <a href="mailto:info@mikare.health" class="contact-card__link">info@mikare.health</a>
-        </Card>
+        </div>
 
         <!-- Social Links -->
-        <Card variant="glass" edgeLit class="contact-card">
+        <div class="contact-card glass glass--edge-lit">
           <div class="contact-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
             </svg>
           </div>
           <h3>Connect With Us</h3>
-          <ul class="social-links" style="justify-content: center; margin-top: var(--space-4);">
+          <ul class="social-links">
             <li>
               <a href="https://www.instagram.com/mikare_health" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +62,7 @@ import CTASection from '../components/CTASection.astro';
               </a>
             </li>
           </ul>
-        </Card>
+        </div>
       </div>
     </div>
   </section>
@@ -68,6 +72,11 @@ import CTASection from '../components/CTASection.astro';
 </Layout>
 
 <style>
+  .section-intro {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -79,6 +88,17 @@ import CTASection from '../components/CTASection.astro';
   .contact-card {
     padding: var(--space-10);
     text-align: center;
+    border-radius: var(--radius-2xl);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--accent-dim);
+    border-color: var(--accent);
   }
 
   .contact-card__icon {
@@ -97,15 +117,23 @@ import CTASection from '../components/CTASection.astro';
   .contact-card h3 {
     font-size: var(--text-xl);
     margin-bottom: var(--space-3);
+    text-align: center;
   }
 
   .contact-card__link {
     font-size: var(--text-lg);
     color: var(--accent);
     text-decoration: none;
+    display: block;
+    text-align: center;
   }
 
   .contact-card__link:hover {
     text-decoration: underline;
+  }
+
+  .contact-card .social-links {
+    justify-content: center;
+    margin-top: var(--space-4);
   }
 </style>

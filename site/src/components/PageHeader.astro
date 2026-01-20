@@ -11,7 +11,10 @@
  * @prop {string} eyebrow - Optional small text displayed above the title
  * @prop {boolean} tall - If true, increases the header height (min-height: 50vh)
  * @prop {boolean} animate - If true, enables fade-in-up animations (default: true)
+ * @prop {boolean} ribbon - If true, displays the DataRibbon motif (default: true)
  */
+
+import DataRibbon from './DataRibbon.astro';
 
 interface Props {
   title: string;
@@ -19,6 +22,7 @@ interface Props {
   eyebrow?: string;
   tall?: boolean;
   animate?: boolean;
+  ribbon?: boolean;
 }
 
 const {
@@ -26,12 +30,14 @@ const {
   subtitle,
   eyebrow,
   tall = false,
-  animate = true
+  animate = true,
+  ribbon = true
 } = Astro.props;
 ---
 
 <section class:list={["page-header", { "page-header--tall": tall }]}>
   <div class="container text-center">
+    {ribbon && <DataRibbon variant="section" />}
     {eyebrow && (
       <span class:list={["page-header__eyebrow", { "animate-fade-in-up": animate }]}>
         {eyebrow}

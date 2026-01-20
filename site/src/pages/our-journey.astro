@@ -1,20 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import DataRibbon from '../components/DataRibbon.astro';
+import InfoMap from '../components/InfoMap.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="Our Journey" description="MiKare Health was born from lived experience - 21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis that wasn't right.">
   <!-- Hero Section -->
-  <section class="page-header" style="min-height: 50vh; display: flex; align-items: center; justify-content: center;">
-    <div class="container text-center">
-      <h1 class="page-header__title animate-fade-in-up">Our Journey</h1>
-    </div>
-  </section>
+  <PageHeader title="Our Journey" tall />
 
   <!-- Origin Story -->
   <section class="section">
     <div class="container">
-      <div class="text-center" style="max-width: 900px; margin-inline: auto; margin-bottom: var(--space-16);">
-        <h2 style="margin-bottom: var(--space-6);">How MiKare Health was born</h2>
+      <div class="section-intro" style="max-width: 900px; margin-bottom: var(--space-16);">
+        <DataRibbon variant="section" />
+        <h2>How MiKare Health was born</h2>
         <p style="margin-inline: auto;">
           MiKare Health was born from lived experience - <strong>21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis</strong> that wasn't right.
         </p>
@@ -28,6 +29,9 @@ import Layout from '../layouts/Layout.astro';
           Karen's family story, and the lessons that shaped MiKare's approach, are shared in her book Mum, Please Help Me!, a testament to the importance of being prepared, persistent, and heard in healthcare.
         </p>
       </div>
+
+      <!-- Information Cartography - visualizes convergence -->
+      <InfoMap variant="divider" />
 
       <!-- Story Sections -->
       <div class="story-section">
@@ -68,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="story-section__content">
           <h3>The MiKare Health App</h3>
-          <p>Using the framework learnt during Mikayla's journey and written and explained in our book Mum, Please Health Me!, the MiKare Health App was developed. Following the lessons learnt, the documents we created, all our manual processes have been turned into the features you use today. So what took me 18 months to solve, which is even a short time compared the typical 5+ years for some, technology can now support you to have faster, detailed summaries of your health to strengthen your voice when you need it.</p>
+          <p>Using the framework learnt during Mikayla's journey and written and explained in our book Mum, Please Help Me!, the MiKare Health App was developed. Following the lessons learnt, the documents we created, all our manual processes have been turned into the features you use today. So what took me 18 months to solve, which is even a short time compared the typical 5+ years for some, technology can now support you to have faster, detailed summaries of your health <strong class="text-emphasis">to strengthen your voice when you need it.</strong></p>
         </div>
       </div>
     </div>
@@ -90,15 +94,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">We welcome you to join MiKare Health today for you and your family's health.</p>
-        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <CTASection description="We welcome you to join MiKare Health today for you and your family's health." />
 </Layout>
 
 <style>

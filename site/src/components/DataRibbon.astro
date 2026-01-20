@@ -1,0 +1,196 @@
+---
+/**
+ * DataRibbon Component
+ *
+ * A signature visual motif representing data/information flow.
+ * Clean strokes only—no glow filters.
+ * Uses brand colors with intentional opacity levels.
+ *
+ * @prop {"hero" | "section" | "inline"} variant - Size/placement variant
+ * @prop {boolean} animate - Enable subtle flow animation (default: false)
+ * @prop {string} class - Additional CSS classes
+ */
+
+interface Props {
+  variant?: "hero" | "section" | "inline";
+  animate?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "section",
+  animate = false,
+  class: className,
+} = Astro.props;
+
+const classes = [
+  "data-ribbon",
+  `data-ribbon--${variant}`,
+  animate && "data-ribbon--animated",
+  className,
+].filter(Boolean).join(" ");
+
+// Generate unique ID for gradient
+const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class={classes} aria-hidden="true">
+  <svg
+    class="data-ribbon__svg"
+    viewBox="0 0 1200 120"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <!-- Primary gradient for the ribbon stroke -->
+      <linearGradient id={gradientId} x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="var(--ribbon-color-1)" stop-opacity="0" />
+        <stop offset="20%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="50%" stop-color="var(--ribbon-color-2)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="80%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="100%" stop-color="var(--ribbon-color-1)" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    <!-- The flowing data ribbon path - organic wave suggesting information flow -->
+    <path
+      class="data-ribbon__path"
+      d="M0,60
+         C150,60 150,20 300,20
+         C450,20 450,100 600,100
+         C750,100 750,40 900,40
+         C1050,40 1050,80 1200,80"
+      stroke={`url(#${gradientId})`}
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+
+    <!-- Secondary parallel line for depth -->
+    <path
+      class="data-ribbon__path data-ribbon__path--secondary"
+      d="M0,70
+         C150,70 150,30 300,30
+         C450,30 450,110 600,110
+         C750,110 750,50 900,50
+         C1050,50 1050,90 1200,90"
+      stroke={`url(#${gradientId})`}
+      stroke-width="1"
+      stroke-linecap="round"
+      opacity="0.5"
+    />
+  </svg>
+</div>
+
+<style>
+  .data-ribbon {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    /* Padding prevents stroke clipping */
+    padding: 2px 0;
+  }
+
+  .data-ribbon__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .data-ribbon__path {
+    transition: opacity 200ms ease-out;
+  }
+
+  /* ─── Light Mode ─── */
+  /* Magenta primary, teal secondary */
+  .data-ribbon {
+    --ribbon-color-1: var(--brand-magenta);
+    --ribbon-color-2: var(--brand-teal);
+    --ribbon-opacity: 0.28;
+  }
+
+  /* ─── Dark Mode ─── */
+  /* Teal primary (dominant), magenta secondary - NO navy */
+  :global([data-theme="dark"]) .data-ribbon {
+    --ribbon-color-1: var(--brand-teal);
+    --ribbon-color-2: var(--brand-magenta);
+    --ribbon-opacity: 0.24;
+  }
+
+  /* ─── Hero Variant ─── */
+  .data-ribbon--hero {
+    inset: 0;
+    --ribbon-opacity: 0.22;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--hero {
+    --ribbon-opacity: 0.20;
+  }
+
+  /* Subtle increase on hero hover/focus */
+  .data-ribbon--hero:hover,
+  :global(.hero:hover) .data-ribbon--hero,
+  :global(.hero:focus-within) .data-ribbon--hero {
+    --ribbon-opacity: 0.30;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--hero:hover,
+  :global([data-theme="dark"] .hero:hover) .data-ribbon--hero {
+    --ribbon-opacity: 0.26;
+  }
+
+  /* ─── Section Variant ─── */
+  .data-ribbon--section {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 40px;
+    margin: 0 auto var(--space-6);
+    --ribbon-opacity: 0.26;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--section {
+    --ribbon-opacity: 0.22;
+  }
+
+  /* ─── Inline Variant ─── */
+  .data-ribbon--inline {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 20px;
+    vertical-align: middle;
+    --ribbon-opacity: 0.28;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--inline {
+    --ribbon-opacity: 0.24;
+  }
+
+  /* ─── Animation ─── */
+  @keyframes ribbonFlow {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -200;
+    }
+  }
+
+  .data-ribbon--animated .data-ribbon__path {
+    stroke-dasharray: 20 10;
+    animation: ribbonFlow 8s linear infinite;
+  }
+
+  .data-ribbon--animated .data-ribbon__path--secondary {
+    animation-duration: 12s;
+    animation-direction: reverse;
+  }
+
+  /* ─── Reduced Motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .data-ribbon--animated .data-ribbon__path {
+      animation: none;
+    }
+  }
+</style>

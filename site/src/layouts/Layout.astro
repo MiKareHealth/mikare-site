@@ -32,6 +32,72 @@ const currentPath = Astro.url.pathname;
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
+    <!--
+      Theme toggle script - handles click events on all [data-theme-toggle] buttons.
+      Separated from component to run only once per page.
+    -->
+    <script is:inline>
+      (function() {
+        var STORAGE_KEY = 'mikare-theme';
+        var initialized = false;
+
+        function getStoredTheme() {
+          try { return localStorage.getItem(STORAGE_KEY); }
+          catch (e) { return null; }
+        }
+
+        function setStoredTheme(theme) {
+          try { localStorage.setItem(STORAGE_KEY, theme); }
+          catch (e) {}
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          updateLabels(theme);
+        }
+
+        function updateLabels(theme) {
+          var next = theme === 'light' ? 'dark' : 'light';
+          document.querySelectorAll('[data-theme-toggle]').forEach(function(btn) {
+            btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+          });
+        }
+
+        function toggle() {
+          var current = document.documentElement.getAttribute('data-theme') || 'light';
+          var next = current === 'light' ? 'dark' : 'light';
+          applyTheme(next);
+          setStoredTheme(next);
+        }
+
+        function setup() {
+          document.querySelectorAll('[data-theme-toggle]').forEach(function(btn) {
+            if (!btn._themeHandler) {
+              btn._themeHandler = function(e) { e.preventDefault(); toggle(); };
+              btn.addEventListener('click', btn._themeHandler);
+            }
+          });
+          var theme = document.documentElement.getAttribute('data-theme') || 'light';
+          updateLabels(theme);
+        }
+
+        function init() {
+          if (initialized) { setup(); return; }
+          initialized = true;
+          var stored = getStoredTheme();
+          applyTheme(stored || 'light');
+          setup();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+        document.addEventListener('astro:after-swap', setup);
+        document.addEventListener('astro:page-load', setup);
+      })();
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>

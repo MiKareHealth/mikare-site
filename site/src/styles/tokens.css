@@ -95,13 +95,36 @@
   /* Noise Overlay */
   --noise-opacity: 0.02;
 
-  /* CTA Gradient */
-  --cta-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-navy) 100%);
+  /* CTA Gradient - Navy base with subtle brand accent hints */
+  --cta-gradient: linear-gradient(
+    135deg,
+    #051484 0%,
+    #030d5c 35%,
+    #0a1068 65%,
+    #12166e 85%,
+    #1a1a72 100%
+  );
   --cta-text: #ffffff;
 
   /* Quote Background */
   --quote-bg: var(--brand-soft-tint);
   --quote-text: var(--brand-navy);
+
+  /* ─── Hero Spotlight ─────────────────────────────────────────────────────── */
+  --spotlight-color-1: rgba(5, 20, 132, 0.06);
+  --spotlight-color-2: rgba(209, 48, 127, 0.04);
+  --spotlight-color-3: rgba(114, 215, 193, 0.03);
+  --spotlight-size: 800px;
+
+  /* ─── Edge Lighting Enhanced ─────────────────────────────────────────────── */
+  --edge-lit-gradient: linear-gradient(
+    135deg,
+    rgba(209, 48, 127, 0.2) 0%,
+    rgba(114, 215, 193, 0.15) 50%,
+    rgba(5, 20, 132, 0.2) 100%
+  );
+  --edge-lit-opacity: 0;
+  --edge-lit-opacity-hover: 1;
 
   /* ─── Semantic State Colors ─────────────────────────────────────────────── */
 
@@ -215,13 +238,34 @@
   /* Noise Overlay */
   --noise-opacity: 0.025;
 
-  /* CTA Gradient */
-  --cta-gradient: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-navy-light) 100%);
+  /* CTA Gradient - Teal base with subtle depth for dark mode */
+  --cta-gradient: linear-gradient(
+    135deg,
+    #72D7C1 0%,
+    #5cc4ad 35%,
+    #4fb89e 65%,
+    #45a890 85%,
+    #3a9a82 100%
+  );
   --cta-text: #0c0c14;
 
   /* Quote Background */
   --quote-bg: #1a1a28;
   --quote-text: var(--brand-teal);
+
+  /* ─── Hero Spotlight (Dark Mode) ─────────────────────────────────────────── */
+  --spotlight-color-1: rgba(114, 215, 193, 0.08);
+  --spotlight-color-2: rgba(209, 48, 127, 0.05);
+  --spotlight-color-3: rgba(5, 20, 132, 0.12);
+  --spotlight-size: 900px;
+
+  /* ─── Edge Lighting Enhanced (Dark Mode) ─────────────────────────────────── */
+  --edge-lit-gradient: linear-gradient(
+    135deg,
+    rgba(114, 215, 193, 0.25) 0%,
+    rgba(209, 48, 127, 0.2) 50%,
+    rgba(114, 215, 193, 0.25) 100%
+  );
 
   /* ─── Semantic State Colors (Dark Mode) ─────────────────────────────────── */
 

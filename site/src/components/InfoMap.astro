@@ -1,0 +1,207 @@
+---
+/**
+ * InfoMap Component
+ *
+ * A minimalist "information flow" divider visualizing convergence.
+ * Clean strokes only—no glow, no bullseye, no rings.
+ * 2-3 flow lines per side + sparse nodes.
+ *
+ * @prop {"background" | "divider"} variant - Placement variant
+ * @prop {string} class - Additional CSS classes
+ */
+
+interface Props {
+  variant?: "background" | "divider";
+  class?: string;
+}
+
+const {
+  variant = "divider",
+  class: className,
+} = Astro.props;
+
+const classes = [
+  "info-map",
+  `info-map--${variant}`,
+  className,
+].filter(Boolean).join(" ");
+
+// Generate unique IDs for gradients
+const uid = Math.random().toString(36).slice(2, 9);
+---
+
+<div class={classes} aria-hidden="true">
+  <svg
+    class="info-map__svg"
+    viewBox="0 0 800 100"
+    preserveAspectRatio="xMidYMid meet"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <!-- Left flow gradient: fades in toward center -->
+      <linearGradient id={`im-left-${uid}`} x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="var(--im-stroke-primary)" stop-opacity="0" />
+        <stop offset="40%" stop-color="var(--im-stroke-primary)" stop-opacity="var(--im-line-opacity)" />
+        <stop offset="100%" stop-color="var(--im-stroke-primary)" stop-opacity="var(--im-line-opacity)" />
+      </linearGradient>
+
+      <!-- Right flow gradient: fades out from center -->
+      <linearGradient id={`im-right-${uid}`} x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="var(--im-stroke-secondary)" stop-opacity="var(--im-line-opacity)" />
+        <stop offset="60%" stop-color="var(--im-stroke-secondary)" stop-opacity="var(--im-line-opacity)" />
+        <stop offset="100%" stop-color="var(--im-stroke-secondary)" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    <!-- Left converging lines (3 lines) -->
+    <g class="info-map__lines info-map__lines--left">
+      <path
+        d="M0,25 Q120,35 280,45 T400,50"
+        stroke={`url(#im-left-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M0,50 Q150,50 300,50 T400,50"
+        stroke={`url(#im-left-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M0,75 Q120,65 280,55 T400,50"
+        stroke={`url(#im-left-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </g>
+
+    <!-- Right diverging lines (3 lines) -->
+    <g class="info-map__lines info-map__lines--right">
+      <path
+        d="M400,50 Q520,45 620,35 T800,25"
+        stroke={`url(#im-right-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M400,50 Q550,50 700,50 T800,50"
+        stroke={`url(#im-right-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M400,50 Q520,55 620,65 T800,75"
+        stroke={`url(#im-right-${uid})`}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </g>
+
+    <!-- Sparse nodes (6 total) -->
+    <g class="info-map__nodes">
+      <!-- Left side nodes -->
+      <circle cx="80" cy="38" r="2.5" class="info-map__node info-map__node--primary" />
+      <circle cx="160" cy="62" r="2" class="info-map__node info-map__node--secondary" />
+
+      <!-- Right side nodes -->
+      <circle cx="640" cy="38" r="2" class="info-map__node info-map__node--secondary" />
+      <circle cx="720" cy="62" r="2.5" class="info-map__node info-map__node--primary" />
+
+      <!-- Edge accents -->
+      <circle cx="50" cy="50" r="1.5" class="info-map__node info-map__node--primary" />
+      <circle cx="750" cy="50" r="1.5" class="info-map__node info-map__node--primary" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .info-map {
+    position: relative;
+    pointer-events: none;
+    z-index: 0;
+    /* Padding prevents stroke clipping at edges */
+    padding: 4px 0;
+  }
+
+  .info-map__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ─── Light Mode Defaults ─── */
+  /* Stroke colors: magenta primary, teal secondary */
+  .info-map {
+    --im-stroke-primary: var(--brand-magenta);
+    --im-stroke-secondary: var(--brand-teal);
+    --im-line-opacity: 0.26;
+    --im-node-opacity-primary: 0.32;
+    --im-node-opacity-secondary: 0.26;
+  }
+
+  /* ─── Dark Mode ─── */
+  /* Stroke colors: teal primary (dominant), magenta secondary */
+  :global([data-theme="dark"]) .info-map {
+    --im-stroke-primary: var(--brand-teal);
+    --im-stroke-secondary: var(--brand-magenta);
+    --im-line-opacity: 0.24;
+    --im-node-opacity-primary: 0.30;
+    --im-node-opacity-secondary: 0.24;
+  }
+
+  /* ─── Nodes ─── */
+  .info-map__node--primary {
+    fill: var(--im-stroke-primary);
+    fill-opacity: var(--im-node-opacity-primary);
+  }
+
+  .info-map__node--secondary {
+    fill: var(--im-stroke-secondary);
+    fill-opacity: var(--im-node-opacity-secondary);
+  }
+
+  /* ─── Divider Variant ─── */
+  .info-map--divider {
+    width: 100%;
+    max-width: 700px;
+    height: 80px;
+    margin: var(--space-6) auto var(--space-8);
+  }
+
+  /* ─── Background Variant ─── */
+  .info-map--background {
+    position: absolute;
+    inset: 0;
+    height: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* ─── Subtle hover enhancement ─── */
+  .info-map--divider:hover {
+    --im-line-opacity: 0.32;
+    --im-node-opacity-primary: 0.38;
+    --im-node-opacity-secondary: 0.32;
+  }
+
+  :global([data-theme="dark"]) .info-map--divider:hover {
+    --im-line-opacity: 0.28;
+    --im-node-opacity-primary: 0.35;
+    --im-node-opacity-secondary: 0.28;
+  }
+
+  /* ─── Transitions ─── */
+  .info-map__lines path,
+  .info-map__node {
+    transition: opacity 200ms ease-out, fill-opacity 200ms ease-out;
+  }
+
+  /* ─── Reduced Motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .info-map__lines path,
+    .info-map__node {
+      transition: none;
+    }
+  }
+</style>

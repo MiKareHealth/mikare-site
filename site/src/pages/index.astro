@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DataRibbon from '../components/DataRibbon.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="MiKare Health" description="MiKare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.">
   <!-- Hero Section -->
   <section class="hero">
+    <DataRibbon variant="hero" />
     <div class="hero__bg">
       <div class="img-placeholder" style="position: absolute; inset: 0; border-radius: 0;">
         [Hero Background Image]
@@ -27,7 +30,8 @@ import Layout from '../layouts/Layout.astro';
   <!-- Features Section -->
   <section class="section">
     <div class="container">
-      <div class="text-center" style="margin-bottom: var(--space-12);">
+      <div class="section-intro">
+        <DataRibbon variant="section" />
         <span class="eyebrow">Our Core Values</span>
         <h2>At MiKare Health, our core values guide our mission and shape our commitment to empowering health journeys for all.</h2>
       </div>
@@ -69,9 +73,10 @@ import Layout from '../layouts/Layout.astro';
   <!-- Features Grid Section -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
-      <div class="text-center" style="margin-bottom: var(--space-12);">
+      <div class="section-intro">
+        <DataRibbon variant="section" />
         <h2>Key Features</h2>
-        <p style="margin-inline: auto;">Discover the powerful tools designed to transform how you manage and understand your family's health.</p>
+        <p>Discover the powerful tools designed to transform how you manage and understand your family's health.</p>
       </div>
 
       <div class="features stagger">
@@ -148,13 +153,5 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
-        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <CTASection />
 </Layout>

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Button from '../components/Button.astro';
-import Card from '../components/Card.astro';
+import DataRibbon from '../components/DataRibbon.astro';
 import CTASection from '../components/CTASection.astro';
 ---
 
@@ -13,18 +13,23 @@ import CTASection from '../components/CTASection.astro';
   <!-- Trial Banner -->
   <section class="section" style="padding-top: var(--space-8);">
     <div class="container">
-      <Card variant="glass" edgeLit class="trial-banner">
-        <h2 style="margin-bottom: var(--space-4);">Download the app and receive 7 day free trial</h2>
-      </Card>
+      <a href="/mikareapp" class="trial-banner glass glass--edge-lit">
+        <h2 class="trial-banner__title">Download the app and receive 7 day free trial</h2>
+      </a>
     </div>
   </section>
 
   <!-- Pricing Cards -->
   <section class="section">
     <div class="container">
+      <div class="section-intro">
+        <DataRibbon variant="section" />
+        <h2>Choose Your Plan</h2>
+      </div>
+
       <div class="pricing-grid">
         <!-- Individual Plan -->
-        <Card variant="default" hoverable={false} class="pricing-card">
+        <div class="pricing-card glass glass--edge-lit">
           <h3 class="pricing-card__name">A plan just for you</h3>
           <div class="pricing-card__desc">
             <p class="pricing-card__meta">Monthly or discounted annual subscription</p>
@@ -33,10 +38,10 @@ import CTASection from '../components/CTASection.astro';
             <p class="pricing-card__highlight">Includes full feature access for one profile.</p>
           </div>
           <Button href="/mikareapp" variant="secondary" class="pricing-card__btn">Get Started</Button>
-        </Card>
+        </div>
 
         <!-- Family Plan -->
-        <Card variant="featured" hoverable={false} class="pricing-card">
+        <div class="pricing-card glass glass--edge-lit">
           <h3 class="pricing-card__name">A plan for the family</h3>
           <div class="pricing-card__desc">
             <p class="pricing-card__meta">Monthly or discounted annual subscription</p>
@@ -45,7 +50,7 @@ import CTASection from '../components/CTASection.astro';
             <p class="pricing-card__highlight">Includes full feature access for up to five profiles.</p>
           </div>
           <Button href="/mikareapp" variant="primary" class="pricing-card__btn">Get Started</Button>
-        </Card>
+        </div>
       </div>
     </div>
   </section>
@@ -64,13 +69,46 @@ import CTASection from '../components/CTASection.astro';
 </Layout>
 
 <style>
+  /* Trial Banner - clickable, larger, centered */
   .trial-banner {
-    padding: var(--space-10);
+    display: block;
+    padding: var(--space-12) var(--space-10);
     text-align: center;
     max-width: 800px;
     margin-inline: auto;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-2xl);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
   }
 
+  .trial-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--accent-dim);
+    border-color: var(--accent);
+  }
+
+  .trial-banner__title {
+    margin: 0;
+    font-size: var(--text-2xl);
+  }
+
+  /* Section intro alignment */
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-intro h2 {
+    margin-bottom: 0;
+  }
+
+  /* Pricing Grid */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -79,20 +117,33 @@ import CTASection from '../components/CTASection.astro';
     margin-inline: auto;
   }
 
+  /* Pricing Cards with hover effects */
   .pricing-card {
     padding: var(--space-10);
     border-radius: var(--radius-2xl);
     display: flex;
     flex-direction: column;
+    text-align: center;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--accent-dim);
+    border-color: var(--accent);
   }
 
   .pricing-card__name {
     font-size: var(--text-2xl);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
   .pricing-card__desc {
     flex-grow: 1;
+    text-align: left;
   }
 
   .pricing-card__desc p {
@@ -102,14 +153,17 @@ import CTASection from '../components/CTASection.astro';
   .pricing-card__meta {
     font-size: var(--text-sm);
     color: var(--text-muted);
+    text-align: center;
   }
 
   .pricing-card__highlight {
     font-weight: 500;
     color: var(--text);
+    text-align: center;
   }
 
   .pricing-card__btn {
     margin-top: auto;
+    align-self: center;
   }
 </style>

@@ -1,17 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="News" description="Stay up to date with the latest news and updates from MiKare Health.">
   <!-- Hero Section -->
-  <section class="page-header">
-    <div class="container text-center">
-      <h1 class="page-header__title animate-fade-in-up">News</h1>
-      <p class="page-header__subtitle animate-fade-in-up" style="animation-delay: 0.15s;">
-        Stay up to date with the latest from MiKare Health
-      </p>
-    </div>
-  </section>
+  <PageHeader
+    title="News"
+    subtitle="Stay up to date with the latest from MiKare Health"
+  />
 
   <!-- News Content -->
   <section class="section">
@@ -31,13 +29,5 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
-        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <CTASection />
 </Layout>

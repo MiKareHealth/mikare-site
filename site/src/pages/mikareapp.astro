@@ -1,17 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import DataRibbon from '../components/DataRibbon.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="MiKare App" description="Empower Your Health Journey - Download MiKare Health on the App Store and get the tools you need to manage your health effectively.">
   <!-- Hero Section -->
-  <section class="page-header" style="min-height: 50vh; display: flex; align-items: center; justify-content: center;">
-    <div class="container text-center">
-      <h1 class="page-header__title animate-fade-in-up">MiKare App</h1>
-      <p class="page-header__subtitle animate-fade-in-up" style="animation-delay: 0.15s;">
-        Empower Your Health Journey
-      </p>
-    </div>
-  </section>
+  <PageHeader
+    title="MiKare App"
+    subtitle="Empower Your Health Journey"
+    tall
+  />
 
   <!-- App Store Download Section -->
   <section class="section">
@@ -38,7 +38,8 @@ import Layout from '../layouts/Layout.astro';
   <!-- Features Section -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
-      <div class="text-center" style="margin-bottom: var(--space-12);">
+      <div class="section-intro">
+        <DataRibbon variant="section" />
         <h2>Key Features</h2>
       </div>
 
@@ -116,14 +117,6 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
-        <!-- TODO: Replace with actual App Store URL when available -->
-        <a href="/app-store" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <!-- TODO: Replace primaryButtonHref with actual App Store URL when available -->
+  <CTASection primaryButtonHref="/app-store" />
 </Layout>
