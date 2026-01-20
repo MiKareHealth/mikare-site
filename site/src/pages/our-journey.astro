@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="section">
     <div class="container">
       <div class="text-center" style="max-width: 900px; margin-inline: auto; margin-bottom: var(--space-16);">
-        <h2 style="margin-bottom: var(--space-6);">How Mikare Health was born</h2>
+        <h2 style="margin-bottom: var(--space-6);">How MiKare Health was born</h2>
         <p style="margin-inline: auto;">
           MiKare Health was born from lived experience - <strong>21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis</strong> that wasn't right.
         </p>
@@ -67,8 +67,8 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <div class="story-section__content">
-          <h3>The Mikare Health App</h3>
-          <p>Using the framework learnt during Mikayla's journey and written and explained in our book Mum, Please Health Me!, the Mikare Health App was developed. Following the lessons learnt, the documents we created, all our manual processes have been turned into the features you use today. So what took me 18 months to solve, which is even a short time compared the typical 5+ years for some, technology can now support you to have faster, detailed summaries of your health to strengthen your voice when you need it.</p>
+          <h3>The MiKare Health App</h3>
+          <p>Using the framework learnt during Mikayla's journey and written and explained in our book Mum, Please Health Me!, the MiKare Health App was developed. Following the lessons learnt, the documents we created, all our manual processes have been turned into the features you use today. So what took me 18 months to solve, which is even a short time compared the typical 5+ years for some, technology can now support you to have faster, detailed summaries of your health to strengthen your voice when you need it.</p>
         </div>
       </div>
     </div>
@@ -115,8 +115,19 @@ import Layout from '../layouts/Layout.astro';
     border-bottom: none;
   }
 
+  /* For even sections, use CSS Grid order property instead of direction: rtl
+     This approach respects RTL languages and is more accessible */
   .story-section:nth-child(even) {
     grid-template-columns: 1.2fr 1fr;
+  }
+
+  /* Visually swap image to the right for even sections using order */
+  .story-section:nth-child(even) .story-section__content {
+    order: 1;
+  }
+
+  .story-section:nth-child(even) .story-section__image {
+    order: 2;
   }
 
   .story-section__content h3 {
@@ -134,8 +145,13 @@ import Layout from '../layouts/Layout.astro';
       grid-template-columns: 1fr;
     }
 
-    .story-section__image {
+    /* On mobile, always show image first regardless of section order */
+    .story-section .story-section__image {
       order: -1;
+    }
+
+    .story-section .story-section__content {
+      order: 0;
     }
   }
 </style>

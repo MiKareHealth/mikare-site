@@ -1,0 +1,172 @@
+---
+/**
+ * Button Component
+ *
+ * A flexible button component with multiple variants and sizes.
+ * Can render as either a <button> or <a> element based on the href prop.
+ *
+ * @prop {string} href - If provided, renders as an anchor link
+ * @prop {"primary" | "secondary" | "glass"} variant - Visual style variant (default: "primary")
+ * @prop {"sm" | "md" | "lg"} size - Button size (default: "md")
+ * @prop {boolean} fullWidth - If true, button takes full container width
+ * @prop {string} class - Additional CSS classes
+ * @prop {string} type - Button type attribute (only for button elements)
+ * @prop {boolean} disabled - Disabled state
+ * @prop {string} target - Link target (for anchor elements)
+ * @prop {string} rel - Link rel attribute (for anchor elements)
+ * @prop {string} ariaLabel - Accessibility label
+ */
+
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "glass";
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  class?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  class: className,
+  type = "button",
+  disabled = false,
+  target,
+  rel,
+  ariaLabel,
+  ...rest
+} = Astro.props;
+
+const classes = [
+  "btn",
+  `btn--${variant}`,
+  `btn--${size}`,
+  fullWidth && "btn--full-width",
+  className,
+].filter(Boolean).join(" ");
+
+const isLink = !!href;
+---
+
+{isLink ? (
+  <a
+    href={href}
+    class={classes}
+    target={target}
+    rel={target === "_blank" ? rel || "noopener noreferrer" : rel}
+    aria-label={ariaLabel}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    disabled={disabled}
+    aria-label={ariaLabel}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Size variants */
+  .btn--sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .btn--md {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+  }
+
+  .btn--lg {
+    padding: var(--space-5) var(--space-10);
+    font-size: var(--text-lg);
+  }
+
+  /* Style variants */
+  .btn--primary {
+    background: var(--accent);
+    color: var(--text-inverse);
+  }
+
+  .btn--primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+    box-shadow: var(--shadow-glow);
+    color: var(--text-inverse);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+
+  .btn--secondary:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn--glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+  }
+
+  .btn--glass:hover:not(:disabled) {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  /* Full width modifier */
+  .btn--full-width {
+    width: 100%;
+  }
+</style>

@@ -35,7 +35,7 @@ const socialLinks = [
 ];
 ---
 
-<footer class="footer">
+<footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -48,7 +48,7 @@ const socialLinks = [
           <span>MiKare Health</span>
         </a>
         <p class="footer__tagline">
-          Mikare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.
+          MiKare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.
         </p>
         <ul class="social-links">
           {socialLinks.map((social) => (
@@ -195,14 +195,61 @@ const socialLinks = [
     color: var(--text-muted);
   }
 
+  /* Tablet layout (768px-900px): Optimized 2-column grid with proper order control
+     Uses CSS Grid order property instead of direction: rtl for RTL language support */
   @media (max-width: 900px) {
     .footer__grid {
       grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
     }
 
     .footer__brand {
       grid-column: span 2;
       max-width: none;
+      order: 1;
+    }
+
+    /* Use CSS Grid order for proper layout control */
+    .footer__nav:nth-of-type(1) {
+      order: 2;
+    }
+
+    .footer__nav:nth-of-type(2) {
+      order: 3;
+    }
+
+    .footer__nav:nth-of-type(3) {
+      order: 4;
+    }
+  }
+
+  /* Optimized tablet breakpoint (768px-900px) */
+  @media (min-width: 768px) and (max-width: 900px) {
+    .footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+
+    .footer__brand {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .footer__logo {
+      grid-column: span 2;
+    }
+
+    .footer__tagline {
+      grid-column: 1;
+    }
+
+    .footer__brand .social-links {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
     }
   }
 
@@ -213,6 +260,11 @@ const socialLinks = [
 
     .footer__brand {
       grid-column: span 1;
+      display: block;
+    }
+
+    .footer__brand .social-links {
+      justify-self: start;
     }
   }
 </style>

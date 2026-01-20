@@ -1,21 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="Pricing" description="Choose the right MiKare Health plan for you or your family. Start with a 7 day free trial.">
   <!-- Hero Section -->
-  <section class="page-header">
-    <div class="container text-center">
-      <h1 class="page-header__title animate-fade-in-up">Pricing</h1>
-    </div>
-  </section>
+  <PageHeader title="Pricing" />
 
   <!-- Trial Banner -->
   <section class="section" style="padding-top: var(--space-8);">
     <div class="container">
-      <div class="glass glass--accent text-center" style="padding: var(--space-10); max-width: 800px; margin-inline: auto;">
+      <Card variant="glass" edgeLit class="trial-banner">
         <h2 style="margin-bottom: var(--space-4);">Download the app and receive 7 day free trial</h2>
-      </div>
+      </Card>
     </div>
   </section>
 
@@ -24,28 +24,28 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="pricing-grid">
         <!-- Individual Plan -->
-        <div class="pricing-card">
+        <Card variant="default" hoverable={false} class="pricing-card">
           <h3 class="pricing-card__name">A plan just for you</h3>
           <div class="pricing-card__desc">
-            <p style="margin-bottom: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted);">Monthly or discounted annual subscription</p>
-            <p style="margin-bottom: var(--space-4);">Manage the health journey of one person in one secure place.</p>
-            <p style="margin-bottom: var(--space-4);">Ideal for individuals who want full access to MiKare's features for a single profile — whether you're focusing on your own wellbeing or supporting one person as their health advocate.</p>
-            <p style="font-weight: 500; color: var(--color-text-primary);">Includes full feature access for one profile.</p>
+            <p class="pricing-card__meta">Monthly or discounted annual subscription</p>
+            <p>Manage the health journey of one person in one secure place.</p>
+            <p>Ideal for individuals who want full access to MiKare's features for a single profile — whether you're focusing on your own wellbeing or supporting one person as their health advocate.</p>
+            <p class="pricing-card__highlight">Includes full feature access for one profile.</p>
           </div>
-          <a href="/mikareapp" class="btn btn--secondary" style="margin-top: auto;">Get Started</a>
-        </div>
+          <Button href="/mikareapp" variant="secondary" class="pricing-card__btn">Get Started</Button>
+        </Card>
 
         <!-- Family Plan -->
-        <div class="pricing-card pricing-card--featured">
+        <Card variant="featured" hoverable={false} class="pricing-card">
           <h3 class="pricing-card__name">A plan for the family</h3>
           <div class="pricing-card__desc">
-            <p style="margin-bottom: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted);">Monthly or discounted annual subscription</p>
-            <p style="margin-bottom: var(--space-4);">Manage the health journeys of up to five people in one secure place.</p>
-            <p style="margin-bottom: var(--space-4);">Designed for families and carers who want to organise records, track symptoms, and stay prepared across multiple profiles — all with full access to MiKare's features.</p>
-            <p style="font-weight: 500; color: var(--color-text-primary);">Includes full feature access for up to five profiles.</p>
+            <p class="pricing-card__meta">Monthly or discounted annual subscription</p>
+            <p>Manage the health journeys of up to five people in one secure place.</p>
+            <p>Designed for families and carers who want to organise records, track symptoms, and stay prepared across multiple profiles — all with full access to MiKare's features.</p>
+            <p class="pricing-card__highlight">Includes full feature access for up to five profiles.</p>
           </div>
-          <a href="/mikareapp" class="btn btn--primary" style="margin-top: auto;">Get Started</a>
-        </div>
+          <Button href="/mikareapp" variant="primary" class="pricing-card__btn">Get Started</Button>
+        </Card>
       </div>
     </div>
   </section>
@@ -60,13 +60,56 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
-        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <CTASection />
 </Layout>
+
+<style>
+  .trial-banner {
+    padding: var(--space-10);
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .pricing-card {
+    padding: var(--space-10);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card__name {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .pricing-card__desc {
+    flex-grow: 1;
+  }
+
+  .pricing-card__desc p {
+    margin-bottom: var(--space-4);
+  }
+
+  .pricing-card__meta {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .pricing-card__highlight {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .pricing-card__btn {
+    margin-top: auto;
+  }
+</style>

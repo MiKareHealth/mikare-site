@@ -17,8 +17,8 @@ const navLinks = [
 ];
 ---
 
-<header class="nav-header">
-  <nav class="nav container">
+<header class="nav-header" role="banner">
+  <nav class="nav container" aria-label="Main navigation">
     <a href="/" class="nav__logo" aria-label="MiKare Health Home">
       <span class="nav__logo-icon">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,12 @@ const navLinks = [
   .nav__toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
+    /* Ensure minimum 44x44px touch target for accessibility */
+    min-width: var(--touch-target-min, 44px);
+    min-height: var(--touch-target-min, 44px);
     padding: var(--space-2);
     background: none;
     border: none;
@@ -177,6 +182,8 @@ const navLinks = [
 
   .nav__cta {
     font-size: var(--text-sm);
+    /* Ensure minimum 44px touch target height for accessibility */
+    min-height: var(--touch-target-min, 44px);
     padding: var(--space-2) var(--space-5);
   }
 
@@ -216,8 +223,12 @@ const navLinks = [
 
     .nav__link {
       font-size: var(--text-lg);
+      /* Ensure minimum 44px touch target height for accessibility (WCAG 2.1) */
+      min-height: var(--touch-target-min, 44px);
       padding: var(--space-3) var(--space-4);
       width: 100%;
+      display: flex;
+      align-items: center;
     }
 
     .nav__actions {
@@ -246,7 +257,7 @@ const navLinks = [
 <script>
   // Scroll behavior
   const header = document.querySelector('.nav-header');
-  const toggle = document.querySelector('.nav__toggle');
+  const toggle = document.querySelector('.nav__toggle') as HTMLButtonElement | null;
   const links = document.querySelector('.nav__links');
 
   window.addEventListener('scroll', () => {
@@ -257,18 +268,43 @@ const navLinks = [
     }
   });
 
+  // Helper function to close the mobile menu
+  function closeMenu() {
+    toggle?.setAttribute('aria-expanded', 'false');
+    links?.classList.remove('open');
+  }
+
+  // Helper function to open the mobile menu
+  function openMenu() {
+    toggle?.setAttribute('aria-expanded', 'true');
+    links?.classList.add('open');
+  }
+
   // Mobile menu toggle
   toggle?.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', (!isOpen).toString());
-    links?.classList.toggle('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Close menu on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const isOpen = toggle?.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+        toggle?.focus(); // Return focus to toggle button for accessibility
+      }
+    }
   });
 
   // Close menu on link click
   links?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      toggle?.setAttribute('aria-expanded', 'false');
-      links?.classList.remove('open');
+      closeMenu();
     });
   });
 </script>

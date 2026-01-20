@@ -1,0 +1,145 @@
+---
+/**
+ * Card Component
+ *
+ * A flexible card component with multiple visual variants.
+ * Handles default card styling, glass morphism, and featured states.
+ *
+ * @prop {"default" | "glass" | "featured"} variant - Visual style variant (default: "default")
+ * @prop {boolean} edgeLit - If true, adds edge lighting effect on hover (only with glass variant)
+ * @prop {boolean} hoverable - If true, adds hover transform effect (default: true)
+ * @prop {string} class - Additional CSS classes
+ * @prop {string} tag - HTML element to render (default: "div")
+ */
+
+interface Props {
+  variant?: "default" | "glass" | "featured";
+  edgeLit?: boolean;
+  hoverable?: boolean;
+  class?: string;
+  tag?: string;
+}
+
+const {
+  variant = "default",
+  edgeLit = false,
+  hoverable = true,
+  class: className,
+  tag = "div",
+} = Astro.props;
+
+const Tag = tag as any;
+
+const classes = [
+  "card",
+  `card--${variant}`,
+  hoverable && "card--hoverable",
+  variant === "glass" && edgeLit && "glass--edge-lit",
+  className,
+].filter(Boolean).join(" ");
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-base),
+      border-color var(--transition-fast);
+  }
+
+  .card--hoverable:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-lg), 0 0 20px var(--accent-dim);
+  }
+
+  /* Glass variant */
+  .card--glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .card--glass:hover {
+    border-color: var(--glass-border-hover);
+  }
+
+  /* Fallback for browsers without backdrop-filter */
+  @supports not (backdrop-filter: blur(1px)) {
+    .card--glass {
+      background: var(--glass-bg-fallback);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+  }
+
+  /* Featured variant (for pricing cards, etc.) */
+  .card--featured {
+    border-color: var(--accent);
+    position: relative;
+    background: var(--surface);
+  }
+
+  .card--featured::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--accent), transparent);
+    z-index: -1;
+    opacity: 0.15;
+  }
+
+  /* Edge-lit effect for glass cards */
+  .glass--edge-lit {
+    position: relative;
+  }
+
+  .glass--edge-lit::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      var(--edge-glow) 0%,
+      transparent 40%,
+      transparent 60%,
+      var(--edge-glow) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .glass--edge-lit:hover::after,
+  .glass--edge-lit:focus-within::after {
+    opacity: 1;
+  }
+
+  /* Disable hover effects when not hoverable */
+  .card:not(.card--hoverable):hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card--glass:not(.card--hoverable):hover {
+    border-color: var(--glass-border);
+  }
+</style>

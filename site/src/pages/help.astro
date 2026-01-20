@@ -1,44 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="Help" description="Get help with MiKare Health. Find answers to your questions and learn how to use our app.">
   <!-- Hero Section -->
-  <section class="page-header">
-    <div class="container text-center">
-      <h1 class="page-header__title animate-fade-in-up">Help</h1>
-      <p class="page-header__subtitle animate-fade-in-up" style="animation-delay: 0.15s;">
-        Find answers to your questions
-      </p>
-    </div>
-  </section>
+  <PageHeader
+    title="Help"
+    subtitle="Find answers to your questions"
+  />
 
   <!-- Help Content -->
   <section class="section">
     <div class="container">
       <div class="text-center" style="max-width: 600px; margin-inline: auto; padding: var(--space-16) 0;">
-        <div class="glass glass--edge-lit" style="padding: var(--space-12);">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 48px; height: 48px; color: var(--color-accent); margin-bottom: var(--space-6);">
+        <Card variant="glass" edgeLit class="help-card">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="help-icon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
           </svg>
           <h3 style="margin-bottom: var(--space-4);">Help Center Coming Soon</h3>
-          <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">
             Our comprehensive help center is being developed. In the meantime, please reach out to us directly.
           </p>
-          <a href="/contact" class="btn btn--primary">Contact Support</a>
-        </div>
+          <Button href="/contact" variant="primary">Contact Support</Button>
+        </Card>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container">
-      <div class="cta">
-        <h2 class="cta__title">Take Charge of Your Health</h2>
-        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
-        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
-      </div>
-    </div>
-  </section>
+  <CTASection />
 </Layout>
+
+<style>
+  .help-card {
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .help-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+  }
+</style>

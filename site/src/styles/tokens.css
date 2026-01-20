@@ -102,6 +102,50 @@
   /* Quote Background */
   --quote-bg: var(--brand-soft-tint);
   --quote-text: var(--brand-navy);
+
+  /* ─── Semantic State Colors ─────────────────────────────────────────────── */
+
+  /* Success States (Green) */
+  --success: #22c55e;
+  --success-hover: #16a34a;
+  --success-dim: rgba(34, 197, 94, 0.1);
+  --success-text: #166534;
+
+  /* Warning States (Amber) */
+  --warning: #f59e0b;
+  --warning-hover: #d97706;
+  --warning-dim: rgba(245, 158, 11, 0.1);
+  --warning-text: #92400e;
+
+  /* Error States (Red) */
+  --error: #ef4444;
+  --error-hover: #dc2626;
+  --error-dim: rgba(239, 68, 68, 0.1);
+  --error-text: #991b1b;
+
+  /* Info States (Blue) */
+  --info: #3b82f6;
+  --info-hover: #2563eb;
+  --info-dim: rgba(59, 130, 246, 0.1);
+  --info-text: #1e40af;
+
+  /* ─── Brand Color Hover Variants ────────────────────────────────────────── */
+
+  /* Magenta Interactive States */
+  --brand-magenta-hover: var(--brand-magenta-dark);
+  --brand-magenta-active: #8c1f54;
+
+  /* Teal Interactive States */
+  --brand-teal-hover: var(--brand-teal-dark);
+  --brand-teal-active: #3a9a82;
+
+  /* Navy Interactive States */
+  --brand-navy-hover: var(--brand-navy-light);
+  --brand-navy-active: #0a1ea8;
+
+  /* Orange Interactive States */
+  --brand-orange-hover: var(--brand-orange-dark);
+  --brand-orange-active: #9e3d1a;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -178,6 +222,50 @@
   /* Quote Background */
   --quote-bg: #1a1a28;
   --quote-text: var(--brand-teal);
+
+  /* ─── Semantic State Colors (Dark Mode) ─────────────────────────────────── */
+
+  /* Success States (Green) — Brighter for dark mode */
+  --success: #4ade80;
+  --success-hover: #22c55e;
+  --success-dim: rgba(74, 222, 128, 0.15);
+  --success-text: #86efac;
+
+  /* Warning States (Amber) — Brighter for dark mode */
+  --warning: #fbbf24;
+  --warning-hover: #f59e0b;
+  --warning-dim: rgba(251, 191, 36, 0.15);
+  --warning-text: #fcd34d;
+
+  /* Error States (Red) — Brighter for dark mode */
+  --error: #f87171;
+  --error-hover: #ef4444;
+  --error-dim: rgba(248, 113, 113, 0.15);
+  --error-text: #fca5a5;
+
+  /* Info States (Blue) — Brighter for dark mode */
+  --info: #60a5fa;
+  --info-hover: #3b82f6;
+  --info-dim: rgba(96, 165, 250, 0.15);
+  --info-text: #93c5fd;
+
+  /* ─── Brand Color Hover Variants (Dark Mode) ────────────────────────────── */
+
+  /* Magenta Interactive States — Lighter for dark mode */
+  --brand-magenta-hover: var(--brand-magenta-light);
+  --brand-magenta-active: #f08ebe;
+
+  /* Teal Interactive States — Lighter for dark mode */
+  --brand-teal-hover: var(--brand-teal-light);
+  --brand-teal-active: #c4f0e6;
+
+  /* Navy Interactive States — Lighter for dark mode */
+  --brand-navy-hover: #4a6ed4;
+  --brand-navy-active: #6b8ae0;
+
+  /* Orange Interactive States — Lighter for dark mode */
+  --brand-orange-hover: var(--brand-orange-light);
+  --brand-orange-active: #f7b898;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -203,11 +291,13 @@
   --text-6xl: 3.815rem;
   --text-7xl: 4.768rem;
 
-  /* Line Heights */
-  --leading-tight: 1.1;
-  --leading-snug: 1.25;
+  /* Line Heights — Optimized for readability */
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
   --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
+  --leading-relaxed: 1.625;
+  --leading-loose: 1.75;
 
   /* Letter Spacing */
   --tracking-tight: -0.025em;
@@ -285,4 +375,32 @@
     --space-24: 3rem;
     --space-32: 4rem;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   WIDE SCREEN BREAKPOINT (1440px+)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 1440px) {
+  :root {
+    /* Wider max-width for large displays */
+    --max-width: 1400px;
+    --max-width-prose: 70ch;
+
+    /* Increased spacing for breathing room */
+    --space-24: 7rem;
+    --space-32: 10rem;
+
+    /* Slightly larger base grid gap */
+    --grid-gap: var(--space-10);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TOUCH TARGET SIZING
+   Ensure minimum 44x44px touch targets for accessibility
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --touch-target-min: 44px;
 }

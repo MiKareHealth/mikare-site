@@ -10,7 +10,7 @@ interface Props {
 const {
   title,
   description = 'MiKare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.',
-  image = '/og-image.png',
+  image = '/favicon.svg',
   canonical,
   type = 'website',
 } = Astro.props;
@@ -43,9 +43,10 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<!-- TODO: Add apple-touch-icon.png (180x180) to public folder when available -->
+<link rel="apple-touch-icon" href="/favicon.svg" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap&font-display=swap" rel="stylesheet" />

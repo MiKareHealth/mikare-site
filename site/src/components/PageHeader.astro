@@ -1,0 +1,93 @@
+---
+/**
+ * PageHeader Component
+ *
+ * A reusable page header component that displays a title with optional
+ * eyebrow text and subtitle. Replaces the repeated .page-header pattern
+ * across pages.
+ *
+ * @prop {string} title - The main heading text (required)
+ * @prop {string} subtitle - Optional subtitle/description text
+ * @prop {string} eyebrow - Optional small text displayed above the title
+ * @prop {boolean} tall - If true, increases the header height (min-height: 50vh)
+ * @prop {boolean} animate - If true, enables fade-in-up animations (default: true)
+ */
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+  tall?: boolean;
+  animate?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  eyebrow,
+  tall = false,
+  animate = true
+} = Astro.props;
+---
+
+<section class:list={["page-header", { "page-header--tall": tall }]}>
+  <div class="container text-center">
+    {eyebrow && (
+      <span class:list={["page-header__eyebrow", { "animate-fade-in-up": animate }]}>
+        {eyebrow}
+      </span>
+    )}
+    <h1 class:list={["page-header__title", { "animate-fade-in-up": animate }]}>
+      {title}
+    </h1>
+    {subtitle && (
+      <p
+        class:list={["page-header__subtitle", { "animate-fade-in-up": animate }]}
+        style={animate ? "animation-delay: 0.15s;" : undefined}
+      >
+        {subtitle}
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding: var(--space-32) 0 var(--space-16);
+    text-align: center;
+    background: linear-gradient(
+      180deg,
+      var(--bg-secondary) 0%,
+      var(--bg) 100%
+    );
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header--tall {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-header__eyebrow {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-header__title {
+    margin-bottom: var(--space-4);
+  }
+
+  .page-header__subtitle {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-inline: auto;
+  }
+</style>
