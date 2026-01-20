@@ -11,5 +11,9 @@
   },
   "dependencies": {
     "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "playwright": "^1.57.0"
   }
 }

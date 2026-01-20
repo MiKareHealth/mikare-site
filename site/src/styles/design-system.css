@@ -662,11 +662,11 @@ strong, b {
   font-family: var(--font-sans);
   font-size: var(--text-base);
   font-style: normal;
-  color: var(--text-muted);
+  color: var(--text-secondary); /* Changed from text-muted for better contrast on quote-bg */
 }
 
 .quote__author strong {
-  color: var(--text-secondary);
+  color: var(--text);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -686,13 +686,13 @@ strong, b {
 }
 
 .cta__text {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.95); /* Increased for WCAG AA contrast */
   margin-bottom: var(--space-8);
   margin-inline: auto;
 }
 
 [data-theme="dark"] .cta__text {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.87); /* Increased for WCAG AA contrast on teal */
 }
 
 .cta .btn--primary {
@@ -753,6 +753,15 @@ strong, b {
 .prose h4 {
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
+}
+
+/* Prose section headings - used for proper heading hierarchy */
+.prose__heading {
+  font-size: var(--text-xl);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-4);
 }
 
 .prose p {

@@ -27,7 +27,7 @@ import CTASection from '../components/CTASection.astro';
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
             </svg>
           </div>
-          <h3>Email</h3>
+          <h2 class="contact-card__title">Email</h2>
           <a href="mailto:info@mikare.health" class="contact-card__link">info@mikare.health</a>
         </div>
 
@@ -38,7 +38,7 @@ import CTASection from '../components/CTASection.astro';
               <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
             </svg>
           </div>
-          <h3>Connect With Us</h3>
+          <h2 class="contact-card__title">Connect With Us</h2>
           <ul class="social-links">
             <li>
               <a href="https://www.instagram.com/mikare_health" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -114,8 +114,10 @@ import CTASection from '../components/CTASection.astro';
     height: 100%;
   }
 
-  .contact-card h3 {
+  .contact-card__title {
     font-size: var(--text-xl);
+    font-family: var(--font-sans);
+    font-weight: 600;
     margin-bottom: var(--space-3);
     text-align: center;
   }
