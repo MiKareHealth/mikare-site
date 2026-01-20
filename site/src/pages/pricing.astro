@@ -3,25 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Button from '../components/Button.astro';
 import DataRibbon from '../components/DataRibbon.astro';
-import CTASection from '../components/CTASection.astro';
 ---
 
 <Layout title="Pricing" description="Choose the right MiKare Health plan for you or your family. Start with a 7 day free trial.">
   <!-- Hero Section -->
   <PageHeader title="Pricing" />
 
-  <!-- Trial Banner -->
-  <section class="section" style="padding-top: var(--space-8);">
-    <div class="container">
-      <a href="/mikareapp" class="trial-banner glass glass--edge-lit">
-        <h2 class="trial-banner__title">Download the app and receive 7 day free trial</h2>
-      </a>
-    </div>
-  </section>
-
-  <!-- Pricing Cards -->
+  <!-- Pricing Content -->
   <section class="section">
     <div class="container">
+      <a href="/mikareapp" class="trial-banner glass glass--edge-lit">
+        <span class="trial-banner__title">Download the app and receive 7 day free trial</span>
+      </a>
+
       <div class="section-intro">
         <DataRibbon variant="section" />
         <h2>Choose Your Plan</h2>
@@ -49,7 +43,7 @@ import CTASection from '../components/CTASection.astro';
             <p>Designed for families and carers who want to organise records, track symptoms, and stay prepared across multiple profiles — all with full access to MiKare's features.</p>
             <p class="pricing-card__highlight">Includes full feature access for up to five profiles.</p>
           </div>
-          <Button href="/mikareapp" variant="primary" class="pricing-card__btn">Get Started</Button>
+          <Button href="/mikareapp" variant="secondary" class="pricing-card__btn">Get Started</Button>
         </div>
       </div>
     </div>
@@ -63,9 +57,6 @@ import CTASection from '../components/CTASection.astro';
       </blockquote>
     </div>
   </section>
-
-  <!-- CTA Section -->
-  <CTASection />
 </Layout>
 
 <style>
@@ -92,8 +83,11 @@ import CTASection from '../components/CTASection.astro';
   }
 
   .trial-banner__title {
+    display: block;
     margin: 0;
     font-size: var(--text-2xl);
+    font-weight: 600;
+    font-family: var(--font-display);
   }
 
   /* Section intro alignment */
