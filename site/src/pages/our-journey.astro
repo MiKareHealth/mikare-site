@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Our Journey" description="MiKare Health was born from lived experience - 21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis that wasn't right.">
+  <!-- Hero Section -->
+  <section class="page-header" style="min-height: 50vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container text-center">
+      <h1 class="page-header__title animate-fade-in-up">Our Journey</h1>
+    </div>
+  </section>
+
+  <!-- Origin Story -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="max-width: 900px; margin-inline: auto; margin-bottom: var(--space-16);">
+        <h2 style="margin-bottom: var(--space-6);">How Mikare Health was born</h2>
+        <p style="margin-inline: auto;">
+          MiKare Health was born from lived experience - <strong>21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis</strong> that wasn't right.
+        </p>
+        <p style="margin-inline: auto;">
+          Through her daughter's journey, Karen learned that better outcomes don't come from more information alone, but from a clear process: capturing symptoms as they happen, connecting details over time, preparing before appointments, and asking the right questions. That lived experience became the framework for MiKare Health.
+        </p>
+        <p style="margin-inline: auto;">
+          MiKare Health was built to give individuals and families access to this same structured flow - transforming health information into clear summaries that support understanding, improve advocacy, and better conversations at the moments that matter most.
+        </p>
+        <p style="margin-inline: auto;">
+          Karen's family story, and the lessons that shaped MiKare's approach, are shared in her book Mum, Please Help Me!, a testament to the importance of being prepared, persistent, and heard in healthcare.
+        </p>
+      </div>
+
+      <!-- Story Sections -->
+      <div class="story-section">
+        <div class="story-section__image">
+          <div class="img-placeholder img-placeholder--portrait" style="max-width: 400px; margin-inline: auto;">
+            [Image: Meeka with Mikaela]
+          </div>
+        </div>
+        <div class="story-section__content">
+          <h3>Keeping good records</h3>
+          <p>Despite repeated consultations and a lack of answers from multiple healthcare professionals, Karen refused to accept uncertainty as an outcome. She began documenting Mikayla's health with precision and persistence - recording every seizure, every trigger, and every surrounding circumstance - determined to uncover what others had missed.</p>
+          <p>Over time, distinct patterns emerged. Karen noticed, for example, that Mikayla's severe episodes followed physical exertion. Yet despite this growing body of evidence, the original diagnosis remained unchanged.</p>
+          <p>"It was heartbreaking watching her suffer," Karen recalls. "Emergency departments began to feel like our second home."</p>
+          <p>Undeterred, Karen continued to advocate relentlessly for her daughter. She immersed herself in research, studied medical literature, and compiled detailed records that gradually transformed fragmented events into a coherent picture. What began as handwritten notes and spreadsheets evolved into a structured body of insight - one that ultimately helped drive meaningful progress in Mikayla's care.</p>
+        </div>
+      </div>
+
+      <div class="story-section">
+        <div class="story-section__content">
+          <h3>The light at the end</h3>
+          <p>After nearly two hundred seizures, Karen's persistence was finally met with openness. In 2024, a clinician took the time to listen to the detailed information Karen had gathered and suggested trialling a blood glucose monitoring device.</p>
+          <p>Within hours of application, the readings revealed a critical truth - Mikayla's blood sugar levels were dropping dangerously low. The pattern Karen had identified was real.</p>
+          <p>With an accurate diagnosis and appropriate treatment in place, Mikayla's health began to turn. Her strength returned. She started running again. Gradually, she reclaimed the rhythm of everyday life that had once seemed out of reach.</p>
+          <p>Although she is still living with the underlying chronic illness, she is able to manage her symptoms and live a full life.</p>
+        </div>
+        <div class="story-section__image">
+          <div class="img-placeholder img-placeholder--portrait" style="max-width: 400px; margin-inline: auto;">
+            [Image: Meeka with Mikaela]
+          </div>
+        </div>
+      </div>
+
+      <div class="story-section">
+        <div class="story-section__image">
+          <div class="img-placeholder img-placeholder--square" style="max-width: 400px; margin-inline: auto;">
+            [Image: MiKare App Icon]
+          </div>
+        </div>
+        <div class="story-section__content">
+          <h3>The Mikare Health App</h3>
+          <p>Using the framework learnt during Mikayla's journey and written and explained in our book Mum, Please Health Me!, the Mikare Health App was developed. Following the lessons learnt, the documents we created, all our manual processes have been turned into the features you use today. So what took me 18 months to solve, which is even a short time compared the typical 5+ years for some, technology can now support you to have faster, detailed summaries of your health to strengthen your voice when you need it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Quote -->
+  <section class="quote-block">
+    <div class="container">
+      <div style="max-width: 700px; margin-inline: auto; text-align: center;">
+        <div class="img-placeholder img-placeholder--square" style="width: 120px; height: 120px; border-radius: 50%; margin-inline: auto; margin-bottom: var(--space-8);">
+          [Photo: Karen Perks]
+        </div>
+        <blockquote class="quote">
+          "Now we've made it through our journey, it's time to turn and help others."
+        </blockquote>
+        <p class="quote__author"><strong>Karen Perks</strong>, Founder and CEO</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2 class="cta__title">Take Charge of Your Health</h2>
+        <p class="cta__text">We welcome you to join MiKare Health today for you and your family's health.</p>
+        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .story-section {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-12);
+    align-items: center;
+    padding-block: var(--space-12);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .story-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .story-section:nth-child(even) {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .story-section__content h3 {
+    margin-bottom: var(--space-6);
+  }
+
+  .story-section__content p {
+    margin-bottom: var(--space-4);
+    font-size: var(--text-base);
+  }
+
+  @media (max-width: 768px) {
+    .story-section,
+    .story-section:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .story-section__image {
+      order: -1;
+    }
+  }
+</style>

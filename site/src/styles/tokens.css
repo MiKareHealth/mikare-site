@@ -1,0 +1,288 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MIKARE HEALTH — DESIGN TOKENS
+   Single source of truth for colors, typography, spacing
+   Light mode default with dark mode support
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BRAND PALETTE (Immutable)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Brand Colors — From Logo */
+  --brand-magenta: #D1307F;
+  --brand-teal: #72D7C1;
+  --brand-navy: #051484;
+  --brand-orange: #ED7239;
+  --brand-soft-tint: #E9D5E0;
+
+  /* Brand Variants */
+  --brand-magenta-dark: #a82666;
+  --brand-magenta-light: #e866a3;
+  --brand-teal-dark: #4fb89e;
+  --brand-teal-light: #a3e8da;
+  --brand-navy-dark: #030d5c;
+  --brand-navy-light: #1a3bc0;
+  --brand-orange-dark: #c4562a;
+  --brand-orange-light: #f49a70;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   LIGHT THEME (Default)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f5;
+  --bg-elevated: #ffffff;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+
+  /* Text */
+  --text: #1a1a2e;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e0;
+  --border-accent: rgba(5, 20, 132, 0.2);
+
+  /* Accents — Using Brand Colors */
+  --accent: var(--brand-magenta);
+  --accent-hover: var(--brand-magenta-dark);
+  --accent-dim: rgba(209, 48, 127, 0.1);
+  --accent-glow: rgba(209, 48, 127, 0.25);
+
+  --accent-2: var(--brand-teal);
+  --accent-2-hover: var(--brand-teal-dark);
+  --accent-2-dim: rgba(114, 215, 193, 0.15);
+
+  --accent-warm: var(--brand-orange);
+  --accent-warm-hover: var(--brand-orange-dark);
+  --accent-warm-dim: rgba(237, 114, 57, 0.1);
+
+  /* Focus */
+  --focus: var(--brand-navy);
+  --focus-ring: rgba(5, 20, 132, 0.4);
+
+  /* Glass Effects — Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-fallback: #ffffff;
+  --glass-border: rgba(5, 20, 132, 0.08);
+  --glass-border-hover: rgba(5, 20, 132, 0.2);
+  --glass-blur: 16px;
+  --glass-shadow: 0 4px 24px rgba(5, 20, 132, 0.08);
+
+  /* Edge Lighting — Subtle navy glow */
+  --edge-glow: rgba(5, 20, 132, 0.15);
+  --edge-glow-hover: rgba(5, 20, 132, 0.3);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px var(--accent-glow);
+
+  /* Noise Overlay */
+  --noise-opacity: 0.02;
+
+  /* CTA Gradient */
+  --cta-gradient: linear-gradient(135deg, var(--brand-magenta) 0%, var(--brand-navy) 100%);
+  --cta-text: #ffffff;
+
+  /* Quote Background */
+  --quote-bg: var(--brand-soft-tint);
+  --quote-text: var(--brand-navy);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   DARK THEME
+   ───────────────────────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg: #0c0c14;
+  --bg-secondary: #12121c;
+  --bg-tertiary: #1a1a28;
+  --bg-elevated: #1f1f30;
+
+  /* Surfaces */
+  --surface: #12121c;
+  --surface-elevated: #1a1a28;
+  --surface-overlay: rgba(12, 12, 20, 0.95);
+
+  /* Text */
+  --text: #f5f5f7;
+  --text-secondary: #a1a1b5;
+  --text-muted: #6b6b80;
+  --text-inverse: #0c0c14;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-accent: rgba(114, 215, 193, 0.25);
+
+  /* Accents — Brighter for dark mode */
+  --accent: var(--brand-teal);
+  --accent-hover: var(--brand-teal-light);
+  --accent-dim: rgba(114, 215, 193, 0.12);
+  --accent-glow: rgba(114, 215, 193, 0.35);
+
+  --accent-2: var(--brand-magenta-light);
+  --accent-2-hover: var(--brand-magenta);
+  --accent-2-dim: rgba(232, 102, 163, 0.15);
+
+  --accent-warm: var(--brand-orange-light);
+  --accent-warm-hover: var(--brand-orange);
+  --accent-warm-dim: rgba(244, 154, 112, 0.12);
+
+  /* Focus */
+  --focus: var(--brand-teal);
+  --focus-ring: rgba(114, 215, 193, 0.5);
+
+  /* Glass Effects — Dark Mode */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-fallback: #1a1a28;
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(114, 215, 193, 0.3);
+  --glass-blur: 20px;
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Edge Lighting — Brighter teal glow */
+  --edge-glow: rgba(114, 215, 193, 0.2);
+  --edge-glow-hover: rgba(114, 215, 193, 0.45);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 40px var(--accent-glow);
+
+  /* Noise Overlay */
+  --noise-opacity: 0.025;
+
+  /* CTA Gradient */
+  --cta-gradient: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-navy-light) 100%);
+  --cta-text: #0c0c14;
+
+  /* Quote Background */
+  --quote-bg: #1a1a28;
+  --quote-text: var(--brand-teal);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHY TOKENS
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Font Families — Editorial Pairing */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type Scale — Modular (1.25) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.563rem;
+  --text-3xl: 1.953rem;
+  --text-4xl: 2.441rem;
+  --text-5xl: 3.052rem;
+  --text-6xl: 3.815rem;
+  --text-7xl: 4.768rem;
+
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SPACING TOKENS
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   LAYOUT TOKENS
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --max-width: 1280px;
+  --max-width-prose: 65ch;
+  --grid-gap: var(--space-8);
+
+  /* Borders & Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 200ms ease-out;
+  --transition-slow: 350ms ease-out;
+
+  /* Z-Index Scale */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-tooltip: 500;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE SPACING OVERRIDES
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  :root {
+    --space-24: 4rem;
+    --space-32: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-16: 3rem;
+    --space-20: 4rem;
+    --space-24: 3rem;
+    --space-32: 4rem;
+  }
+}

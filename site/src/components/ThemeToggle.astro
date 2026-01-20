@@ -1,0 +1,183 @@
+---
+/**
+ * Theme Toggle Component
+ * - Accessible: keyboard focus, aria-label, visible focus ring
+ * - Persists preference in localStorage
+ * - Light mode is default on first visit
+ * - Saved preference overrides OS settings
+ */
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="theme-toggle"
+  aria-label="Switch to dark mode"
+  title="Toggle color theme"
+>
+  <!-- Sun icon (shown in dark mode, click to go light) -->
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--sun"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+
+  <!-- Moon icon (shown in light mode, click to go dark) -->
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--moon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .theme-toggle__icon {
+    width: 20px;
+    height: 20px;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+
+  /* Light mode: show moon, hide sun */
+  .theme-toggle__icon--sun {
+    display: none;
+  }
+
+  .theme-toggle__icon--moon {
+    display: block;
+  }
+
+  /* Dark mode: show sun, hide moon */
+  :global([data-theme="dark"]) .theme-toggle__icon--sun {
+    display: block;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle__icon--moon {
+    display: none;
+  }
+</style>
+
+<script>
+  // Theme Toggle Logic
+  // - Default: light mode
+  // - localStorage preference overrides OS preference
+  // - Accessible toggle with proper aria-label updates
+
+  const STORAGE_KEY = 'mikare-theme';
+
+  function getStoredTheme(): string | null {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem(STORAGE_KEY);
+    }
+    return null;
+  }
+
+  function setStoredTheme(theme: string): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, theme);
+    }
+  }
+
+  function applyTheme(theme: string): void {
+    document.documentElement.setAttribute('data-theme', theme);
+    updateToggleLabel(theme);
+  }
+
+  function updateToggleLabel(theme: string): void {
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      toggle.setAttribute('aria-label', `Switch to ${newTheme} mode`);
+    }
+  }
+
+  function initTheme(): void {
+    // Priority: stored preference > default (light)
+    // We do NOT use OS preference as fallback — light is always default
+    const stored = getStoredTheme();
+    const theme = stored || 'light';
+    applyTheme(theme);
+  }
+
+  function toggleTheme(): void {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    setStoredTheme(next);
+  }
+
+  // Initialize theme immediately
+  initTheme();
+
+  // Set up toggle button
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', toggleTheme);
+    }
+  });
+
+  // Re-run on view transitions (Astro)
+  document.addEventListener('astro:after-swap', initTheme);
+</script>

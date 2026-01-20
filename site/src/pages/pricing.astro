@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pricing" description="Choose the right MiKare Health plan for you or your family. Start with a 7 day free trial.">
+  <!-- Hero Section -->
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-header__title animate-fade-in-up">Pricing</h1>
+    </div>
+  </section>
+
+  <!-- Trial Banner -->
+  <section class="section" style="padding-top: var(--space-8);">
+    <div class="container">
+      <div class="glass glass--accent text-center" style="padding: var(--space-10); max-width: 800px; margin-inline: auto;">
+        <h2 style="margin-bottom: var(--space-4);">Download the app and receive 7 day free trial</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="section">
+    <div class="container">
+      <div class="pricing-grid">
+        <!-- Individual Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-card__name">A plan just for you</h3>
+          <div class="pricing-card__desc">
+            <p style="margin-bottom: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted);">Monthly or discounted annual subscription</p>
+            <p style="margin-bottom: var(--space-4);">Manage the health journey of one person in one secure place.</p>
+            <p style="margin-bottom: var(--space-4);">Ideal for individuals who want full access to MiKare's features for a single profile — whether you're focusing on your own wellbeing or supporting one person as their health advocate.</p>
+            <p style="font-weight: 500; color: var(--color-text-primary);">Includes full feature access for one profile.</p>
+          </div>
+          <a href="/mikareapp" class="btn btn--secondary" style="margin-top: auto;">Get Started</a>
+        </div>
+
+        <!-- Family Plan -->
+        <div class="pricing-card pricing-card--featured">
+          <h3 class="pricing-card__name">A plan for the family</h3>
+          <div class="pricing-card__desc">
+            <p style="margin-bottom: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted);">Monthly or discounted annual subscription</p>
+            <p style="margin-bottom: var(--space-4);">Manage the health journeys of up to five people in one secure place.</p>
+            <p style="margin-bottom: var(--space-4);">Designed for families and carers who want to organise records, track symptoms, and stay prepared across multiple profiles — all with full access to MiKare's features.</p>
+            <p style="font-weight: 500; color: var(--color-text-primary);">Includes full feature access for up to five profiles.</p>
+          </div>
+          <a href="/mikareapp" class="btn btn--primary" style="margin-top: auto;">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="quote-block">
+    <div class="container">
+      <blockquote class="quote">
+        "MiKare Health transforms how you manage family healthcare. The insights and timeline make it effortless to stay organised and informed."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2 class="cta__title">Take Charge of Your Health</h2>
+        <p class="cta__text">Join MiKare Health today and empower yourself with the tools needed to manage your health and wellbeing effectively.</p>
+        <a href="/mikareapp" class="btn btn--primary">Get Started</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <section class="error-page">
+    <div class="container">
+      <div class="error-content glass glass--edge-lit">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-text">The page you're looking for doesn't exist or has been moved.</p>
+        <div class="error-actions">
+          <a href="/" class="btn btn--primary">Back to Home</a>
+          <a href="/contact" class="btn btn--secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .error-page {
+    min-height: calc(100vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) 0;
+  }
+
+  .error-content {
+    text-align: center;
+    padding: var(--space-16);
+    max-width: 500px;
+  }
+
+  .error-code {
+    font-size: clamp(6rem, 20vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-accent), #00a88a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-4);
+  }
+
+  .error-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .error-text {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+    margin-inline: auto;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
