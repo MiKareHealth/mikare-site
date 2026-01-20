@@ -594,38 +594,104 @@ strong, b {
    FEATURE GRID
    ───────────────────────────────────────────────────────────────────────────── */
 
+/* Base features grid */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-6);
 }
 
+/* Premium 3-column grid for Key Features */
+.features--premium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+  .features--premium {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 640px) {
+  .features--premium {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Feature card - glassmorphic style */
 .feature {
+  display: flex;
+  flex-direction: column;
   padding: var(--space-8);
-  background: var(--surface);
-  border: 1px solid var(--border);
+  min-height: 220px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   transition:
     transform 200ms ease-out,
-    box-shadow 250ms ease-out,
-    border-color 200ms ease-out;
+    box-shadow 200ms ease-out,
+    border-color 200ms ease-out,
+    background-color 200ms ease-out;
 }
 
+/* Hover state */
 .feature:hover {
-  border-color: var(--border-accent);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md), 0 0 24px var(--accent-dim);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md), 0 0 20px var(--accent-dim);
+  background: color-mix(in srgb, var(--glass-bg) 90%, var(--accent) 10%);
 }
 
+/* Focus state - at least as strong as hover */
+.feature:focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md), 0 0 20px var(--accent-dim);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .feature {
+    transition: none;
+  }
+
+  .feature:hover,
+  .feature:focus-within {
+    transform: none;
+  }
+}
+
+/* Icon badge */
 .feature__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 48px;
   height: 48px;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-2);
+  background: var(--accent-dim);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   color: var(--accent);
+  flex-shrink: 0;
+}
+
+.feature__icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .feature__title {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-family: var(--font-sans);
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -635,6 +701,7 @@ strong, b {
   font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
+  flex-grow: 1;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -667,42 +734,6 @@ strong, b {
 
 .quote__author strong {
   color: var(--text);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   CTA SECTION
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.cta {
-  background: var(--cta-gradient);
-  padding: var(--space-20);
-  border-radius: var(--radius-2xl);
-  text-align: center;
-}
-
-.cta__title {
-  color: var(--cta-text);
-  margin-bottom: var(--space-4);
-}
-
-.cta__text {
-  color: rgba(255, 255, 255, 0.95); /* Increased for WCAG AA contrast */
-  margin-bottom: var(--space-8);
-  margin-inline: auto;
-}
-
-[data-theme="dark"] .cta__text {
-  color: rgba(0, 0, 0, 0.87); /* Increased for WCAG AA contrast on teal */
-}
-
-.cta .btn--primary {
-  background: var(--bg);
-  color: var(--text);
-}
-
-.cta .btn--primary:hover {
-  background: var(--bg-secondary);
-  box-shadow: var(--shadow-xl);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
