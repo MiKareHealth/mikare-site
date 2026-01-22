@@ -32,6 +32,21 @@ const socialLinks = [
     label: 'TikTok',
     icon: `<path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>`,
   },
+  {
+    href: '#',
+    label: 'X',
+    icon: `<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>`,
+  },
+  {
+    href: '#',
+    label: 'Facebook',
+    icon: `<path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>`,
+  },
+  {
+    href: '#',
+    label: 'Reddit',
+    icon: `<path d="M0 256C0 114.6 114.6 0 256 0S512 114.6 512 256s-114.6 256-256 256S0 397.4 0 256zM288 336c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H304c-8.8 0-16 7.2-16 16zm-144 0c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zm261.3-72c-20.9 0-39.6 9.5-52.1 24.4c-21.8-12.4-47.2-20-74.7-21.7l21.1-63.3 61.3 14.9c2.7 19.4 19.3 34.3 39.4 34.3c22.1 0 40-17.9 40-40s-17.9-40-40-40c-15.6 0-29.1 8.9-35.7 21.9l-70.4-17.1c-6.5-1.6-13.2 2.1-15.4 8.4l-28 84c-30.4 1-58.4 9.3-82.1 23.1C156.3 273.5 137.6 264 116.7 264c-35.7 0-64.6 28.9-64.6 64.6c0 21.2 10.2 40 26 51.9C76.5 386.5 76 392.2 76 398c0 70.7 80.6 128 180 128s180-57.3 180-128c0-5.8-.5-11.5-1.5-17.1c16.7-11.7 27.5-31.1 27.5-52.9c0-35.7-28.9-64.6-64.6-64.6l-.1 .6zm-13.4-105c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zm-224 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm224 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>`,
+  },
 ];
 ---
 
@@ -84,16 +99,22 @@ const socialLinks = [
       </div>
 
       <div class="footer__nav">
+        <span class="footer__heading">Resources</span>
+        <ul class="footer__links">
+          <li><a href="https://www.amazon.com/Mum-Please-Help-Karen-Perks-ebook/dp/B0F3CMQSZ7" target="_blank" rel="noopener noreferrer">Book</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__nav">
         <span class="footer__heading">Contact</span>
         <ul class="footer__links">
-          <li><a href="mailto:info@mikare.health">info@mikare.health</a></li>
+          <li><a href="mailto:hello@mikare.health">hello@mikare.health</a></li>
           <li><a href="mailto:support@mikare.health">support@mikare.health</a></li>
+          <li><a href="/press">Press</a></li>
+          <li><a href="/press-kit">Press Kit</a></li>
         </ul>
         <p class="footer__address">
-          MiKare Health Pty Ltd<br />
-          81-83 Campbell Street<br />
-          Surry Hills NSW 2010<br />
-          Australia
+          ABN 11 688 299 443
         </p>
       </div>
     </div>
@@ -114,8 +135,8 @@ const socialLinks = [
 
   .footer__grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: var(--space-12);
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: var(--space-10);
     margin-bottom: var(--space-12);
   }
 
@@ -228,6 +249,10 @@ const socialLinks = [
 
     .footer__nav:nth-of-type(3) {
       order: 4;
+    }
+
+    .footer__nav:nth-of-type(4) {
+      order: 5;
     }
   }
 

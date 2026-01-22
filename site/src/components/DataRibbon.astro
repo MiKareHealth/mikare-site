@@ -46,9 +46,16 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
       <!-- Primary gradient for the ribbon stroke -->
       <linearGradient id={gradientId} x1="0%" y1="50%" x2="100%" y2="50%">
         <stop offset="0%" stop-color="var(--ribbon-color-1)" stop-opacity="0" />
-        <stop offset="20%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="15%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
         <stop offset="50%" stop-color="var(--ribbon-color-2)" stop-opacity="var(--ribbon-opacity)" />
-        <stop offset="80%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="85%" stop-color="var(--ribbon-color-1)" stop-opacity="var(--ribbon-opacity)" />
+        <stop offset="100%" stop-color="var(--ribbon-color-1)" stop-opacity="0" />
+      </linearGradient>
+      <!-- Secondary gradient for tertiary line -->
+      <linearGradient id={`${gradientId}-tertiary`} x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="var(--ribbon-color-2)" stop-opacity="0" />
+        <stop offset="25%" stop-color="var(--ribbon-color-2)" stop-opacity="calc(var(--ribbon-opacity) * 0.5)" />
+        <stop offset="75%" stop-color="var(--ribbon-color-1)" stop-opacity="calc(var(--ribbon-opacity) * 0.5)" />
         <stop offset="100%" stop-color="var(--ribbon-color-1)" stop-opacity="0" />
       </linearGradient>
     </defs>
@@ -57,12 +64,12 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
     <path
       class="data-ribbon__path"
       d="M0,60
-         C150,60 150,20 300,20
-         C450,20 450,100 600,100
-         C750,100 750,40 900,40
-         C1050,40 1050,80 1200,80"
+         C150,60 150,15 300,15
+         C450,15 450,105 600,105
+         C750,105 750,35 900,35
+         C1050,35 1050,85 1200,85"
       stroke={`url(#${gradientId})`}
-      stroke-width="2"
+      stroke-width="2.5"
       stroke-linecap="round"
     />
 
@@ -70,14 +77,28 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
     <path
       class="data-ribbon__path data-ribbon__path--secondary"
       d="M0,70
-         C150,70 150,30 300,30
-         C450,30 450,110 600,110
-         C750,110 750,50 900,50
-         C1050,50 1050,90 1200,90"
+         C150,70 150,25 300,25
+         C450,25 450,115 600,115
+         C750,115 750,45 900,45
+         C1050,45 1050,95 1200,95"
       stroke={`url(#${gradientId})`}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      opacity="0.6"
+    />
+
+    <!-- Tertiary line for additional layering -->
+    <path
+      class="data-ribbon__path data-ribbon__path--tertiary"
+      d="M0,50
+         C150,50 150,5 300,5
+         C450,5 450,95 600,95
+         C750,95 750,25 900,25
+         C1050,25 1050,75 1200,75"
+      stroke={`url(#${gradientId}-tertiary)`}
       stroke-width="1"
       stroke-linecap="round"
-      opacity="0.5"
+      opacity="0.4"
     />
   </svg>
 </div>
@@ -106,7 +127,7 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
   .data-ribbon {
     --ribbon-color-1: var(--brand-magenta);
     --ribbon-color-2: var(--brand-teal);
-    --ribbon-opacity: 0.28;
+    --ribbon-opacity: 0.38;
   }
 
   /* ─── Dark Mode ─── */
@@ -114,43 +135,43 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
   :global([data-theme="dark"]) .data-ribbon {
     --ribbon-color-1: var(--brand-teal);
     --ribbon-color-2: var(--brand-magenta);
-    --ribbon-opacity: 0.24;
+    --ribbon-opacity: 0.34;
   }
 
   /* ─── Hero Variant ─── */
   .data-ribbon--hero {
     inset: 0;
-    --ribbon-opacity: 0.22;
+    --ribbon-opacity: 0.32;
   }
 
   :global([data-theme="dark"]) .data-ribbon--hero {
-    --ribbon-opacity: 0.20;
+    --ribbon-opacity: 0.28;
   }
 
   /* Subtle increase on hero hover/focus */
   .data-ribbon--hero:hover,
   :global(.hero:hover) .data-ribbon--hero,
   :global(.hero:focus-within) .data-ribbon--hero {
-    --ribbon-opacity: 0.30;
+    --ribbon-opacity: 0.42;
   }
 
   :global([data-theme="dark"]) .data-ribbon--hero:hover,
   :global([data-theme="dark"] .hero:hover) .data-ribbon--hero {
-    --ribbon-opacity: 0.26;
+    --ribbon-opacity: 0.36;
   }
 
   /* ─── Section Variant ─── */
   .data-ribbon--section {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    height: 40px;
-    margin: 0 auto var(--space-6);
-    --ribbon-opacity: 0.26;
+    max-width: 800px;
+    height: 60px;
+    margin: 0 auto var(--space-8);
+    --ribbon-opacity: 0.36;
   }
 
   :global([data-theme="dark"]) .data-ribbon--section {
-    --ribbon-opacity: 0.22;
+    --ribbon-opacity: 0.32;
   }
 
   /* ─── Inline Variant ─── */

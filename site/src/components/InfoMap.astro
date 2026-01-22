@@ -57,60 +57,94 @@ const uid = Math.random().toString(36).slice(2, 9);
     <!-- Left converging lines (3 lines) -->
     <g class="info-map__lines info-map__lines--left">
       <path
-        d="M0,25 Q120,35 280,45 T400,50"
+        d="M0,20 Q100,28 200,38 Q300,48 400,50"
         stroke={`url(#im-left-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
       />
       <path
         d="M0,50 Q150,50 300,50 T400,50"
         stroke={`url(#im-left-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
       />
       <path
-        d="M0,75 Q120,65 280,55 T400,50"
+        d="M0,80 Q100,72 200,62 Q300,52 400,50"
         stroke={`url(#im-left-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
+      />
+      <!-- Additional subtle outer lines -->
+      <path
+        d="M0,10 Q120,20 260,40 Q340,48 400,50"
+        stroke={`url(#im-left-${uid})`}
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.5"
+      />
+      <path
+        d="M0,90 Q120,80 260,60 Q340,52 400,50"
+        stroke={`url(#im-left-${uid})`}
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.5"
       />
     </g>
 
     <!-- Right diverging lines (3 lines) -->
     <g class="info-map__lines info-map__lines--right">
       <path
-        d="M400,50 Q520,45 620,35 T800,25"
+        d="M400,50 Q500,48 600,38 Q700,28 800,20"
         stroke={`url(#im-right-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
       />
       <path
         d="M400,50 Q550,50 700,50 T800,50"
         stroke={`url(#im-right-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
       />
       <path
-        d="M400,50 Q520,55 620,65 T800,75"
+        d="M400,50 Q500,52 600,62 Q700,72 800,80"
         stroke={`url(#im-right-${uid})`}
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"
+      />
+      <!-- Additional subtle outer lines -->
+      <path
+        d="M400,50 Q460,48 540,40 Q680,20 800,10"
+        stroke={`url(#im-right-${uid})`}
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.5"
+      />
+      <path
+        d="M400,50 Q460,52 540,60 Q680,80 800,90"
+        stroke={`url(#im-right-${uid})`}
+        stroke-width="1"
+        stroke-linecap="round"
+        opacity="0.5"
       />
     </g>
 
-    <!-- Sparse nodes (6 total) -->
+    <!-- Nodes along the paths -->
     <g class="info-map__nodes">
       <!-- Left side nodes -->
-      <circle cx="80" cy="38" r="2.5" class="info-map__node info-map__node--primary" />
-      <circle cx="160" cy="62" r="2" class="info-map__node info-map__node--secondary" />
+      <circle cx="60" cy="32" r="3" class="info-map__node info-map__node--primary" />
+      <circle cx="140" cy="42" r="2.5" class="info-map__node info-map__node--secondary" />
+      <circle cx="100" cy="68" r="2" class="info-map__node info-map__node--secondary" />
+      <circle cx="200" cy="50" r="2.5" class="info-map__node info-map__node--primary" />
 
       <!-- Right side nodes -->
-      <circle cx="640" cy="38" r="2" class="info-map__node info-map__node--secondary" />
-      <circle cx="720" cy="62" r="2.5" class="info-map__node info-map__node--primary" />
+      <circle cx="600" cy="50" r="2.5" class="info-map__node info-map__node--primary" />
+      <circle cx="660" cy="42" r="2.5" class="info-map__node info-map__node--secondary" />
+      <circle cx="700" cy="68" r="2" class="info-map__node info-map__node--secondary" />
+      <circle cx="740" cy="32" r="3" class="info-map__node info-map__node--primary" />
 
       <!-- Edge accents -->
-      <circle cx="50" cy="50" r="1.5" class="info-map__node info-map__node--primary" />
-      <circle cx="750" cy="50" r="1.5" class="info-map__node info-map__node--primary" />
+      <circle cx="40" cy="50" r="2" class="info-map__node info-map__node--primary" />
+      <circle cx="760" cy="50" r="2" class="info-map__node info-map__node--primary" />
     </g>
   </svg>
 </div>
@@ -135,9 +169,9 @@ const uid = Math.random().toString(36).slice(2, 9);
   .info-map {
     --im-stroke-primary: var(--brand-magenta);
     --im-stroke-secondary: var(--brand-teal);
-    --im-line-opacity: 0.26;
-    --im-node-opacity-primary: 0.32;
-    --im-node-opacity-secondary: 0.26;
+    --im-line-opacity: 0.38;
+    --im-node-opacity-primary: 0.45;
+    --im-node-opacity-secondary: 0.36;
   }
 
   /* ─── Dark Mode ─── */
@@ -145,9 +179,9 @@ const uid = Math.random().toString(36).slice(2, 9);
   :global([data-theme="dark"]) .info-map {
     --im-stroke-primary: var(--brand-teal);
     --im-stroke-secondary: var(--brand-magenta);
-    --im-line-opacity: 0.24;
-    --im-node-opacity-primary: 0.30;
-    --im-node-opacity-secondary: 0.24;
+    --im-line-opacity: 0.34;
+    --im-node-opacity-primary: 0.42;
+    --im-node-opacity-secondary: 0.32;
   }
 
   /* ─── Nodes ─── */
@@ -164,31 +198,31 @@ const uid = Math.random().toString(36).slice(2, 9);
   /* ─── Divider Variant ─── */
   .info-map--divider {
     width: 100%;
-    max-width: 700px;
-    height: 80px;
-    margin: var(--space-6) auto var(--space-8);
+    max-width: 900px;
+    height: 100px;
+    margin: var(--space-8) auto var(--space-10);
   }
 
   /* ─── Background Variant ─── */
   .info-map--background {
     position: absolute;
     inset: 0;
-    height: 100px;
+    height: 120px;
     top: 50%;
     transform: translateY(-50%);
   }
 
   /* ─── Subtle hover enhancement ─── */
   .info-map--divider:hover {
-    --im-line-opacity: 0.32;
-    --im-node-opacity-primary: 0.38;
-    --im-node-opacity-secondary: 0.32;
+    --im-line-opacity: 0.48;
+    --im-node-opacity-primary: 0.55;
+    --im-node-opacity-secondary: 0.45;
   }
 
   :global([data-theme="dark"]) .info-map--divider:hover {
-    --im-line-opacity: 0.28;
-    --im-node-opacity-primary: 0.35;
-    --im-node-opacity-secondary: 0.28;
+    --im-line-opacity: 0.42;
+    --im-node-opacity-primary: 0.50;
+    --im-node-opacity-secondary: 0.40;
   }
 
   /* ─── Transitions ─── */
