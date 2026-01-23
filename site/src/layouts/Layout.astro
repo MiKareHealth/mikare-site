@@ -73,8 +73,17 @@ const currentPath = Astro.url.pathname;
         function setup() {
           document.querySelectorAll('[data-theme-toggle]').forEach(function(btn) {
             if (!btn._themeHandler) {
-              btn._themeHandler = function(e) { e.preventDefault(); toggle(); };
+              btn._themeHandler = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggle();
+              };
               btn.addEventListener('click', btn._themeHandler);
+              // Ensure touch works on mobile
+              btn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                toggle();
+              }, { passive: false });
             }
           });
           var theme = document.documentElement.getAttribute('data-theme') || 'light';

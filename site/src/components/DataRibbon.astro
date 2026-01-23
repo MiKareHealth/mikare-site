@@ -186,6 +186,17 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
     --ribbon-opacity: 0.28;
   }
 
+  /* On mobile, give ribbon fixed height to prevent vertical compression */
+  @media (max-width: 768px) {
+    .data-ribbon--hero {
+      top: auto;
+      bottom: 15%;
+      left: 0;
+      right: 0;
+      height: 80px;
+    }
+  }
+
   /* ─── Shimmer Animation ─── */
   /* Path length is ~1600px. Use dasharray to show small segment, hide rest */
   .data-ribbon__shimmer {
