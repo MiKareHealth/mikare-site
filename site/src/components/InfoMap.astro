@@ -6,12 +6,12 @@
  * Clean strokes only—no glow, no bullseye, no rings.
  * 2-3 flow lines per side + sparse nodes.
  *
- * @prop {"background" | "divider"} variant - Placement variant
+ * @prop {"background" | "divider" | "section"} variant - Placement variant
  * @prop {string} class - Additional CSS classes
  */
 
 interface Props {
-  variant?: "background" | "divider";
+  variant?: "background" | "divider" | "section";
   class?: string;
 }
 
@@ -169,9 +169,9 @@ const uid = Math.random().toString(36).slice(2, 9);
   .info-map {
     --im-stroke-primary: var(--brand-magenta);
     --im-stroke-secondary: var(--brand-teal);
-    --im-line-opacity: 0.38;
-    --im-node-opacity-primary: 0.45;
-    --im-node-opacity-secondary: 0.36;
+    --im-line-opacity: 0.36;
+    --im-node-opacity-primary: 0.42;
+    --im-node-opacity-secondary: 0.34;
   }
 
   /* ─── Dark Mode ─── */
@@ -179,9 +179,9 @@ const uid = Math.random().toString(36).slice(2, 9);
   :global([data-theme="dark"]) .info-map {
     --im-stroke-primary: var(--brand-teal);
     --im-stroke-secondary: var(--brand-magenta);
-    --im-line-opacity: 0.34;
-    --im-node-opacity-primary: 0.42;
-    --im-node-opacity-secondary: 0.32;
+    --im-line-opacity: 0.32;
+    --im-node-opacity-primary: 0.40;
+    --im-node-opacity-secondary: 0.30;
   }
 
   /* ─── Nodes ─── */
@@ -198,9 +198,31 @@ const uid = Math.random().toString(36).slice(2, 9);
   /* ─── Divider Variant ─── */
   .info-map--divider {
     width: 100%;
-    max-width: 900px;
-    height: 100px;
-    margin: var(--space-8) auto var(--space-10);
+    max-width: 800px;
+    height: 80px;
+    margin: var(--space-6) auto var(--space-8);
+  }
+
+  @media (max-width: 768px) {
+    .info-map--divider {
+      max-width: 95%;
+      height: 60px;
+    }
+  }
+
+  /* ─── Section Variant (same as divider for consistency) ─── */
+  .info-map--section {
+    width: 100%;
+    max-width: 800px;
+    height: 80px;
+    margin: var(--space-6) auto var(--space-8);
+  }
+
+  @media (max-width: 768px) {
+    .info-map--section {
+      max-width: 95%;
+      height: 60px;
+    }
   }
 
   /* ─── Background Variant ─── */

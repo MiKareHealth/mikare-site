@@ -18,6 +18,7 @@ const navLinks = [
 ---
 
 <header class="nav-header" role="banner">
+  <div class="nav__backdrop" aria-hidden="true"></div>
   <nav class="nav container" aria-label="Main navigation">
     <a href="/" class="nav__logo" aria-label="MiKare Health Home">
       <span class="nav__logo-icon">
@@ -27,6 +28,7 @@ const navLinks = [
           width="32"
           height="32"
           class="nav__logo-img"
+          aria-hidden="true"
         />
       </span>
       <span class="nav__logo-text">MiKare Health</span>
@@ -208,8 +210,27 @@ const navLinks = [
     margin-top: var(--space-4);
   }
 
+  /* Mobile backdrop overlay */
+  .nav__backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
   /* Mobile styles */
   @media (max-width: 900px) {
+    .nav__backdrop {
+      display: block;
+    }
+
+    .nav__backdrop.open {
+      opacity: 1;
+      z-index: 1;
+    }
     .nav__toggle {
       display: flex;
       z-index: 10;
@@ -273,6 +294,7 @@ const navLinks = [
   const header = document.querySelector('.nav-header');
   const toggle = document.querySelector('.nav__toggle') as HTMLButtonElement | null;
   const links = document.querySelector('.nav__links');
+  const backdrop = document.querySelector('.nav__backdrop');
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -286,12 +308,14 @@ const navLinks = [
   function closeMenu() {
     toggle?.setAttribute('aria-expanded', 'false');
     links?.classList.remove('open');
+    backdrop?.classList.remove('open');
   }
 
   // Helper function to open the mobile menu
   function openMenu() {
     toggle?.setAttribute('aria-expanded', 'true');
     links?.classList.add('open');
+    backdrop?.classList.add('open');
   }
 
   // Mobile menu toggle
@@ -302,6 +326,11 @@ const navLinks = [
     } else {
       openMenu();
     }
+  });
+
+  // Close menu on backdrop click
+  backdrop?.addEventListener('click', () => {
+    closeMenu();
   });
 
   // Close menu on Escape key press

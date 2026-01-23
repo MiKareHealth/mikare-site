@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import DataRibbon from '../components/DataRibbon.astro';
 import InfoMap from '../components/InfoMap.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Layout title="MiKare Health" description="MiKare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.">
@@ -15,9 +16,9 @@ import InfoMap from '../components/InfoMap.astro';
       <p class="hero__subtitle animate-fade-in-up" style="animation-delay: 0.15s">
         MiKare Health is the smart, family-friendly app that helps you track symptoms, detect patterns, and understand your health with clarity and confidence.
       </p>
-      <div class="hero__actions animate-fade-in-up" style="animation-delay: 0.3s; display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-        <a href="https://apps.apple.com/us/app/mikare-health/id6755099048" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Get Started</a>
-        <a href="/our-journey" class="btn btn--secondary">Our Story</a>
+      <div class="hero__actions animate-fade-in-up" style="animation-delay: 0.3s">
+        <Button href="https://apps.apple.com/us/app/mikare-health/id6755099048" target="_blank" variant="secondary">Get Started</Button>
+        <Button href="/our-journey" variant="secondary">Our Story</Button>
       </div>
     </div>
   </section>
@@ -26,9 +27,9 @@ import InfoMap from '../components/InfoMap.astro';
   <section class="section">
     <div class="container">
       <div class="section-intro">
-        <DataRibbon variant="section" />
         <span class="eyebrow">Our Core Values</span>
         <h2>At MiKare Health, our core values guide our mission and shape our commitment to empowering health journeys for all.</h2>
+        <InfoMap variant="section" />
       </div>
 
       <div class="features stagger">
@@ -66,13 +67,12 @@ import InfoMap from '../components/InfoMap.astro';
   </section>
 
   <!-- Features Grid Section -->
-  <section class="section" style="background: var(--bg-secondary);">
+  <section class="section bg-secondary">
     <div class="container">
       <div class="section-intro">
-        <DataRibbon variant="section" />
         <h2>Key Features</h2>
         <p>Discover the powerful tools designed to transform how you manage and understand your family's health.</p>
-        <InfoMap variant="divider" class="section-intro__accent" />
+        <InfoMap variant="section" />
       </div>
 
       <div class="features features--premium stagger">
@@ -136,34 +136,34 @@ import InfoMap from '../components/InfoMap.astro';
           <p class="feature__text">Your health data is encrypted and protected with enterprise-grade security.</p>
         </article>
 
-        <article class="feature feature--placeholder">
+        <article class="feature">
           <div class="feature__icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
             </svg>
           </div>
-          <h3 class="feature__title">Feature</h3>
-          <p class="feature__text">&nbsp;</p>
+          <h3 class="feature__title">Medication Tracking</h3>
+          <p class="feature__text">Track medications and changes over time so patterns can be seen in context, not guessed from memory.</p>
         </article>
 
-        <article class="feature feature--placeholder">
+        <article class="feature">
           <div class="feature__icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
             </svg>
           </div>
-          <h3 class="feature__title">Feature</h3>
-          <p class="feature__text">&nbsp;</p>
+          <h3 class="feature__title">Integrates with existing tracking apps</h3>
+          <p class="feature__text">Bring data together from tools you already use so your history remains coherent and usable in one place.</p>
         </article>
 
-        <article class="feature feature--placeholder">
+        <article class="feature">
           <div class="feature__icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="feature__title">Feature</h3>
-          <p class="feature__text">&nbsp;</p>
+          <h3 class="feature__title">Wearables syncing</h3>
+          <p class="feature__text">Sync wearable signals to support pattern recognition across sleep, activity, and symptoms over time.</p>
         </article>
       </div>
     </div>
@@ -172,9 +172,8 @@ import InfoMap from '../components/InfoMap.astro';
   <!-- Quote Section -->
   <section class="quote-block">
     <div class="container">
-      <blockquote class="quote">
-        "MiKare Health transforms how you manage family healthcare. The insights and timeline make it effortless to stay organised and informed."
-      </blockquote>
+      <h3 class="quote__title">Patient centered data in context</h3>
+      <p class="quote__text">Meaningful insight grows from data that reflects lived experience, not snapshots. MiKare's longitudinal view makes health data purposeful for those who live with it every day.</p>
     </div>
   </section>
 

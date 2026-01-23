@@ -277,6 +277,34 @@ strong, b {
 
 .text-center { text-align: center; }
 .mx-auto { margin-inline: auto; }
+.bg-secondary { background: var(--bg-secondary); }
+
+/* App download block */
+.app-download {
+  padding: var(--space-12);
+  text-align: center;
+  max-width: 700px;
+  margin-inline: auto;
+  border-radius: var(--radius-2xl);
+}
+
+.app-download__icon {
+  max-width: 200px;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
+  aspect-ratio: 1;
+  border-radius: var(--radius-2xl);
+  display: block;
+}
+
+.app-download h2 {
+  margin-bottom: var(--space-4);
+}
+
+.app-download p {
+  margin-bottom: var(--space-8);
+  margin-inline: auto;
+}
 
 /* ─── Section Intro Block ─────────────────────────────────────────────────── */
 .section-intro {
@@ -590,6 +618,13 @@ strong, b {
   margin-inline: auto;
 }
 
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    FEATURE GRID
    ───────────────────────────────────────────────────────────────────────────── */
@@ -734,6 +769,27 @@ strong, b {
 
 .quote__author strong {
   color: var(--text);
+}
+
+/* Testimonial callout block - title + text format */
+.quote__title {
+  font-family: var(--font-serif);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--quote-text);
+  max-width: 800px;
+  margin-inline: auto;
+  margin-bottom: var(--space-4);
+}
+
+.quote__text {
+  font-family: var(--font-sans);
+  font-size: clamp(var(--text-base), 2vw, var(--text-lg));
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin-inline: auto;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -981,7 +1037,7 @@ strong, b {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
-/* Staggered children animations */
+/* Staggered children animations - supports up to 9 children */
 .stagger > * {
   opacity: 0;
   animation: fadeInUp 0.4s ease-out forwards;
@@ -993,6 +1049,9 @@ strong, b {
 .stagger > *:nth-child(4) { animation-delay: 0.2s; }
 .stagger > *:nth-child(5) { animation-delay: 0.25s; }
 .stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger > *:nth-child(9) { animation-delay: 0.45s; }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    RESPONSIVE

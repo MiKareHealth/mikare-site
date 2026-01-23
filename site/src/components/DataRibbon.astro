@@ -8,25 +8,31 @@
  *
  * @prop {"hero" | "section" | "inline"} variant - Size/placement variant
  * @prop {boolean} animate - Enable subtle flow animation (default: false)
+ * @prop {boolean} glass - Enable glassmorphism effect (more transparent, shimmer on load)
  * @prop {string} class - Additional CSS classes
  */
 
 interface Props {
   variant?: "hero" | "section" | "inline";
   animate?: boolean;
+  glass?: boolean;
   class?: string;
 }
 
 const {
   variant = "section",
   animate = false,
+  glass = false,
   class: className,
 } = Astro.props;
+
+const isHero = variant === "hero";
 
 const classes = [
   "data-ribbon",
   `data-ribbon--${variant}`,
   animate && "data-ribbon--animated",
+  glass && "data-ribbon--glass",
   className,
 ].filter(Boolean).join(" ");
 
@@ -100,6 +106,37 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
       stroke-linecap="round"
       opacity="0.4"
     />
+
+    {isHero && (
+      <>
+        <!-- Shimmer overlay - white pulse that travels along the ribbon -->
+        <path
+          class="data-ribbon__shimmer"
+          d="M0,60
+             C150,60 150,15 300,15
+             C450,15 450,105 600,105
+             C750,105 750,35 900,35
+             C1050,35 1050,85 1200,85"
+          stroke="white"
+          stroke-width="5"
+          stroke-linecap="round"
+          fill="none"
+        />
+        <!-- Secondary shimmer - slightly delayed -->
+        <path
+          class="data-ribbon__shimmer data-ribbon__shimmer--secondary"
+          d="M0,70
+             C150,70 150,25 300,25
+             C450,25 450,115 600,115
+             C750,115 750,45 900,45
+             C1050,45 1050,95 1200,95"
+          stroke="white"
+          stroke-width="3"
+          stroke-linecap="round"
+          fill="none"
+        />
+      </>
+    )}
   </svg>
 </div>
 
@@ -142,10 +179,67 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
   .data-ribbon--hero {
     inset: 0;
     --ribbon-opacity: 0.32;
+    pointer-events: auto; /* Enable hover */
   }
 
   :global([data-theme="dark"]) .data-ribbon--hero {
     --ribbon-opacity: 0.28;
+  }
+
+  /* ─── Shimmer Animation ─── */
+  /* Path length is ~1600px. Use dasharray to show small segment, hide rest */
+  .data-ribbon__shimmer {
+    stroke-dasharray: 80 1600;
+    stroke-dashoffset: 80;
+    opacity: 0.6;
+    animation: shimmerTrail 1.8s ease-in-out 0.2s forwards;
+  }
+
+  .data-ribbon__shimmer--secondary {
+    stroke-dasharray: 60 1600;
+    stroke-dashoffset: 60;
+    opacity: 0.4;
+    animation-delay: 0.35s;
+    animation-duration: 2s;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon__shimmer {
+    opacity: 0.4;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon__shimmer--secondary {
+    opacity: 0.25;
+  }
+
+  @keyframes shimmerTrail {
+    0% {
+      stroke-dashoffset: 80;
+    }
+    100% {
+      stroke-dashoffset: -1600;
+    }
+  }
+
+  /* Shimmer on hover - use different keyframes name to re-trigger */
+  .data-ribbon--hero:hover .data-ribbon__shimmer,
+  :global(.hero:hover) .data-ribbon--hero .data-ribbon__shimmer,
+  :global(.page-header:hover) .data-ribbon--hero .data-ribbon__shimmer {
+    animation: shimmerHover 1.4s ease-in-out forwards;
+  }
+
+  .data-ribbon--hero:hover .data-ribbon__shimmer--secondary,
+  :global(.hero:hover) .data-ribbon--hero .data-ribbon__shimmer--secondary,
+  :global(.page-header:hover) .data-ribbon--hero .data-ribbon__shimmer--secondary {
+    animation: shimmerHover 1.6s ease-in-out 0.1s forwards;
+  }
+
+  @keyframes shimmerHover {
+    0% {
+      stroke-dashoffset: 80;
+    }
+    100% {
+      stroke-dashoffset: -1600;
+    }
   }
 
   /* Subtle increase on hero hover/focus */
@@ -158,6 +252,50 @@ const gradientId = `ribbon-gradient-${Math.random().toString(36).slice(2, 9)}`;
   :global([data-theme="dark"]) .data-ribbon--hero:hover,
   :global([data-theme="dark"] .hero:hover) .data-ribbon--hero {
     --ribbon-opacity: 0.36;
+  }
+
+  /* ─── Glass Variant (translucent for page headers) ─── */
+  .data-ribbon--glass {
+    --ribbon-opacity: 0.14;
+  }
+
+  .data-ribbon--glass .data-ribbon__shimmer {
+    opacity: 0.4;
+  }
+
+  .data-ribbon--glass .data-ribbon__shimmer--secondary {
+    opacity: 0.25;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--glass {
+    --ribbon-opacity: 0.10;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--glass .data-ribbon__shimmer {
+    opacity: 0.25;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--glass .data-ribbon__shimmer--secondary {
+    opacity: 0.15;
+  }
+
+  /* Glass hover - slightly more visible */
+  .data-ribbon--glass:hover,
+  :global(.page-header:hover) .data-ribbon--glass {
+    --ribbon-opacity: 0.22;
+  }
+
+  :global([data-theme="dark"]) .data-ribbon--glass:hover,
+  :global([data-theme="dark"] .page-header:hover) .data-ribbon--glass {
+    --ribbon-opacity: 0.16;
+  }
+
+  /* ─── Reduced Motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .data-ribbon__shimmer {
+      animation: none;
+      opacity: 0;
+    }
   }
 
   /* ─── Section Variant ─── */

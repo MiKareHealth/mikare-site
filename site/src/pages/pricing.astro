@@ -2,12 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Button from '../components/Button.astro';
-import DataRibbon from '../components/DataRibbon.astro';
+import InfoMap from '../components/InfoMap.astro';
 ---
 
 <Layout title="Pricing" description="Choose the right MiKare Health plan for you or your family. Start with a 7 day free trial.">
   <!-- Hero Section -->
-  <PageHeader title="Pricing" />
+  <PageHeader title="Pricing" tall />
 
   <!-- Pricing Content -->
   <section class="section">
@@ -17,8 +17,8 @@ import DataRibbon from '../components/DataRibbon.astro';
       </a>
 
       <div class="section-intro">
-        <DataRibbon variant="section" />
         <h2>Choose Your Plan</h2>
+        <InfoMap variant="section" />
       </div>
 
       <div class="pricing-grid">
@@ -52,9 +52,8 @@ import DataRibbon from '../components/DataRibbon.astro';
   <!-- Testimonial -->
   <section class="quote-block">
     <div class="container">
-      <blockquote class="quote">
-        "MiKare Health transforms how you manage family healthcare. The insights and timeline make it effortless to stay organised and informed."
-      </blockquote>
+      <h3 class="quote__title">Longitudinal insight, not isolated moments</h3>
+      <p class="quote__text">Health rarely reveals itself in a single visit. MiKare emphasizes patterns over time so what once seemed random becomes interpretable, not just recorded.</p>
     </div>
   </section>
 </Layout>
@@ -67,6 +66,7 @@ import DataRibbon from '../components/DataRibbon.astro';
     text-align: center;
     max-width: 800px;
     margin-inline: auto;
+    margin-bottom: var(--space-12);
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-2xl);
@@ -87,7 +87,7 @@ import DataRibbon from '../components/DataRibbon.astro';
     margin: 0;
     font-size: var(--text-2xl);
     font-weight: 600;
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
   }
 
   /* Section intro alignment */

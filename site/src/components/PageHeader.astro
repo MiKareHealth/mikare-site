@@ -36,8 +36,8 @@ const {
 ---
 
 <section class:list={["page-header", { "page-header--tall": tall }]}>
+  {ribbon && <DataRibbon variant="hero" glass />}
   <div class="container text-center">
-    {ribbon && <DataRibbon variant="section" />}
     {eyebrow && (
       <span class:list={["page-header__eyebrow", { "animate-fade-in-up": animate }]}>
         {eyebrow}
@@ -59,7 +59,12 @@ const {
 
 <style>
   .page-header {
-    padding: var(--space-32) 0 var(--space-16);
+    position: relative;
+    padding: var(--space-24) 0 var(--space-16);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background: linear-gradient(
       180deg,
@@ -67,13 +72,11 @@ const {
       var(--bg) 100%
     );
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
 
   .page-header--tall {
     min-height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .page-header__eyebrow {
