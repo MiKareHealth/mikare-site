@@ -74,6 +74,10 @@
     border-radius: var(--radius-md);
     color: var(--text-secondary);
     cursor: pointer;
+    /* Ensure touch works properly on mobile */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
     transition:
       color var(--transition-fast),
       border-color var(--transition-fast),

@@ -72,19 +72,16 @@ const currentPath = Astro.url.pathname;
 
         function setup() {
           document.querySelectorAll('[data-theme-toggle]').forEach(function(btn) {
-            if (!btn._themeHandler) {
-              btn._themeHandler = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                toggle();
-              };
-              btn.addEventListener('click', btn._themeHandler);
-              // Ensure touch works on mobile
-              btn.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                toggle();
-              }, { passive: false });
+            // Remove old handler if exists to prevent duplicates
+            if (btn._themeHandler) {
+              btn.removeEventListener('click', btn._themeHandler);
             }
+            btn._themeHandler = function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              toggle();
+            };
+            btn.addEventListener('click', btn._themeHandler);
           });
           var theme = document.documentElement.getAttribute('data-theme') || 'light';
           updateLabels(theme);
