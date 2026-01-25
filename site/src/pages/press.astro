@@ -1,0 +1,289 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="In the Press" description="Media coverage and press features about MiKare Health.">
+  <PageHeader title="In the Press" tall />
+
+  <section class="section">
+    <div class="container">
+      <div class="press-grid">
+        <!-- ABC News Feature - Hero Story -->
+        <article class="press-card press-card--hero glass glass--edge-lit" data-category="featured">
+          <div class="press-card__header">
+            <span class="press-card__badge">Featured Story</span>
+            <span class="press-card__source">ABC News</span>
+          </div>
+          <h2 class="press-card__title">As seen on ABC News: The Story Behind MiKare Health</h2>
+          <p class="press-card__intro">Read the viral ABC News feature on how Founder Karen Perks' fight against a broken system inspired the creation of MiKare Health—and why we built a platform to ensure for every person their whole health story is visible, understood and portable.</p>
+          <Button href="https://www.abc.net.au/news/2025-03-30/misdiagnosed-teen-lucky-to-find-true-cause/105074466" target="_blank" rel="noopener noreferrer" variant="primary">Read the Article</Button>
+        </article>
+
+        <!-- Instagram Feature -->
+        <article class="press-card glass glass--edge-lit" data-category="social">
+          <div class="press-card__header">
+            <span class="press-card__badge">Social</span>
+            <span class="press-card__source">ABC Sydney Instagram</span>
+          </div>
+          <h2 class="press-card__title">A Community Responds</h2>
+          <p class="press-card__text">When ABC Sydney shared Karen and Mikayla's story on Instagram, it didn't just get likes—it sparked a movement. Thousands of Australians reacted to the post, sharing their own stories of the 'medical maze' and rallying behind the need for the change that MiKare Health is leading.</p>
+          <p class="press-card__caption">The viral ABC Sydney post that started a national conversation.</p>
+          <Button href="https://www.instagram.com/p/DH0BN_ITjUA/?img_index=1" target="_blank" rel="noopener noreferrer" variant="secondary">View on Instagram</Button>
+        </article>
+
+        <!-- Podcast -->
+        <article class="press-card glass glass--edge-lit" data-category="podcast">
+          <div class="press-card__header">
+            <span class="press-card__badge">Podcast</span>
+            <span class="press-card__source">Sole Wellness</span>
+          </div>
+          <h2 class="press-card__title">Podcast: 30 Doctors, One Solution</h2>
+          <p class="press-card__text">How do you save your daughter when the experts say nothing is wrong? In this raw and unfiltered interview, Karen joins the Sole Wellness podcast to discuss the 21 emergency visits, the medical gaslighting, and the 'lightbulb moment' where she turned to data—not doctors—to finally find the answer.</p>
+          <Button href="https://youtu.be/wzunj0XrYGc" target="_blank" rel="noopener noreferrer" variant="secondary">Listen to the Episode</Button>
+        </article>
+
+        <!-- Awards -->
+        <article class="press-card glass glass--edge-lit" data-category="award">
+          <div class="press-card__header">
+            <span class="press-card__badge">Award</span>
+            <span class="press-card__source">Stevie Awards 2025</span>
+          </div>
+          <h2 class="press-card__title">MiKare Health Recognized in New York</h2>
+          <p class="press-card__text">MiKare Health has been honoured with a Bronze Stevie® Award in the 2025 Stevie Awards for Women in Business. Selected from over 1,500 entries worldwide, this award for 'Best Health Tech Product for Women' validates our mission to put powerful health intelligence into the hands of the patients who need it most.</p>
+          <div class="press-card__image">
+            <img src="/images/stevie-award.png" alt="Bronze Stevie Award for Best Health Tech Product for Women 2025" loading="lazy" />
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Grid container for consistent spacing */
+  .press-grid {
+    display: grid;
+    gap: var(--space-12);
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  /* Base card styles */
+  .press-card {
+    padding: var(--space-10);
+    border-radius: var(--radius-2xl);
+    position: relative;
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .press-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .press-card:focus-within {
+    outline: 2px solid var(--focus, var(--accent));
+    outline-offset: 2px;
+  }
+
+  /* Category accent bars */
+  .press-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--space-6);
+    right: var(--space-6);
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: var(--accent);
+  }
+
+  .press-card[data-category="featured"]::before {
+    background: var(--brand-magenta, #d1307f);
+  }
+
+  .press-card[data-category="social"]::before {
+    background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+  }
+
+  .press-card[data-category="podcast"]::before {
+    background: var(--brand-navy, #1e3a5f);
+  }
+
+  .press-card[data-category="award"]::before {
+    background: var(--brand-orange, #f97316);
+  }
+
+  /* Hero card distinction */
+  .press-card--hero {
+    border-color: var(--accent);
+    text-align: center;
+  }
+
+  .press-card--hero .press-card__header {
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .press-card--hero .press-card__title {
+    font-size: var(--text-4xl);
+  }
+
+  .press-card--hero .press-card__intro {
+    max-width: 650px;
+    margin-inline: auto;
+  }
+
+  /* Header row */
+  .press-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    padding-top: var(--space-2);
+  }
+
+  /* Badge styling - translucent */
+  .press-card__badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-md);
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .press-card[data-category="featured"] .press-card__badge {
+    background: rgba(209, 48, 127, 0.1);
+    color: var(--brand-magenta, #d1307f);
+  }
+
+  .press-card[data-category="social"] .press-card__badge {
+    background: rgba(131, 58, 180, 0.1);
+    color: #833ab4;
+  }
+
+  .press-card[data-category="podcast"] .press-card__badge {
+    background: rgba(30, 58, 95, 0.15);
+    color: var(--brand-navy, #1e3a5f);
+  }
+
+  :root.dark .press-card[data-category="podcast"] .press-card__badge {
+    background: rgba(100, 149, 237, 0.15);
+    color: #6495ed;
+  }
+
+  .press-card[data-category="award"] .press-card__badge {
+    background: rgba(249, 115, 22, 0.1);
+    color: var(--brand-orange, #f97316);
+  }
+
+  /* Source attribution */
+  .press-card__source {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Title styling */
+  .press-card__title {
+    font-size: var(--text-3xl);
+    letter-spacing: -0.02em;
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Intro text for hero */
+  .press-card__intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    margin-bottom: var(--space-8);
+  }
+
+  /* Regular text */
+  .press-card__text {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Caption */
+  .press-card__caption {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Award image */
+  .press-card__image {
+    margin-top: var(--space-6);
+    text-align: center;
+  }
+
+  .press-card__image img {
+    max-width: 280px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-fast);
+  }
+
+  .press-card:hover .press-card__image img {
+    transform: scale(1.02);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .press-card,
+    .press-card__image img {
+      transition: none;
+    }
+
+    .press-card:hover {
+      transform: none;
+    }
+
+    .press-card:hover .press-card__image img {
+      transform: none;
+    }
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .press-grid {
+      gap: var(--space-8);
+    }
+
+    .press-card {
+      padding: var(--space-6);
+    }
+
+    .press-card__title {
+      font-size: var(--text-xl);
+    }
+
+    .press-card--hero .press-card__title {
+      font-size: var(--text-2xl);
+    }
+
+    .press-card__intro {
+      font-size: var(--text-base);
+    }
+
+    .press-card__image img {
+      max-width: 220px;
+    }
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+---
+
+<Layout title="Using the App | Learn" description="Guides and tips to get the most out of MiKare Health.">
+  <PageHeader title="Using the App" tall />
+
+  <section class="section">
+    <div class="container">
+      <div class="coming-soon glass glass--edge-lit">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="coming-soon__icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+        </svg>
+        <h2 class="coming-soon__title">Coming Soon</h2>
+        <p class="coming-soon__text">Guides and tutorials for using MiKare Health are being developed. Check back soon for helpful tips on getting the most out of the app.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .coming-soon {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: var(--space-12);
+    text-align: center;
+    border-radius: var(--radius-2xl);
+  }
+
+  .coming-soon__icon {
+    width: 64px;
+    height: 64px;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+  }
+
+  .coming-soon__title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .coming-soon__text {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+</style>

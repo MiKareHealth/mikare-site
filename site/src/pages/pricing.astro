@@ -16,9 +16,46 @@ import InfoMap from '../components/InfoMap.astro';
         <span class="trial-banner__title">Download the app and receive 7 day free trial</span>
       </a>
 
+      <!-- Introductory Rate Callout -->
+      <div class="intro-rate-callout">
+        <span class="intro-rate-callout__badge">Limited Time</span>
+        <p class="intro-rate-callout__text">Introductory rates until 28 Feb 2026</p>
+      </div>
+
       <div class="section-intro">
         <h2>Choose Your Plan</h2>
         <InfoMap variant="section" />
+      </div>
+
+      <!-- Pricing Table -->
+      <div class="pricing-table-wrapper">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Annual</th>
+              <th scope="col">Monthly</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="pricing-table__plan-name">Family</span>
+                <span class="pricing-table__plan-desc">Up to 5 profiles</span>
+              </td>
+              <td class="pricing-table__price">$244.99</td>
+              <td class="pricing-table__price">$24.99</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="pricing-table__plan-name">Individual</span>
+                <span class="pricing-table__plan-desc">1 profile</span>
+              </td>
+              <td class="pricing-table__price">$124.99</td>
+              <td class="pricing-table__price">$14.99</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="pricing-grid">
@@ -66,7 +103,7 @@ import InfoMap from '../components/InfoMap.astro';
     text-align: center;
     max-width: 800px;
     margin-inline: auto;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-8);
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-2xl);
@@ -90,6 +127,67 @@ import InfoMap from '../components/InfoMap.astro';
     font-family: var(--font-serif);
   }
 
+  /* Introductory Rate Callout */
+  .intro-rate-callout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    margin-bottom: var(--space-12);
+    max-width: 500px;
+    margin-inline: auto;
+    background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 100%);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-rate-callout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    animation: shimmer-callout 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-callout {
+    0% {
+      left: -100%;
+    }
+    50%, 100% {
+      left: 100%;
+    }
+  }
+
+  .intro-rate-callout__badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    background: var(--accent);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-md);
+  }
+
+  .intro-rate-callout__text {
+    margin: 0;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text);
+  }
+
   /* Section intro alignment */
   .section-intro {
     text-align: center;
@@ -100,6 +198,78 @@ import InfoMap from '../components/InfoMap.astro';
 
   .section-intro h2 {
     margin-bottom: 0;
+  }
+
+  /* Pricing Table */
+  .pricing-table-wrapper {
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: var(--space-12);
+    overflow-x: auto;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .pricing-table th,
+  .pricing-table td {
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .pricing-table thead th {
+    background: var(--bg-secondary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--text-muted);
+  }
+
+  .pricing-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .pricing-table__plan-name {
+    display: block;
+    font-weight: 600;
+    font-size: var(--text-lg);
+    color: var(--text);
+  }
+
+  .pricing-table__plan-desc {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .pricing-table__price {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .pricing-table th,
+    .pricing-table td {
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .pricing-table__price {
+      font-size: var(--text-lg);
+    }
+
+    .intro-rate-callout {
+      flex-direction: column;
+      text-align: center;
+    }
   }
 
   /* Pricing Grid */

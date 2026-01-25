@@ -4,37 +4,43 @@ import PageHeader from '../components/PageHeader.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 ---
 
-<Layout title="Contact us" description="Get in touch with MiKare Health.">
+<Layout title="Get in Touch" description="Get in touch with MiKare Health.">
   <!-- Hero Section -->
   <PageHeader
-    title="Get in touch"
+    title="Get in Touch"
     tall
   />
 
   <!-- Contact Content -->
   <section class="section">
     <div class="container">
-
       <div class="contact-grid">
         <!-- Insurers -->
         <div class="contact-card glass glass--edge-lit">
           <h2 class="contact-card__title">Insurers</h2>
-          <p class="contact-card__blurb">For insurer partnerships and benefit programs, please contact us:</p>
+          <p class="contact-card__blurb">Partner with MiKare Health to reduce redundant care costs by empowering your members with a unified, portable health history that ensures every medical decision is informed. Please contact us.</p>
           <a href="mailto:hello@mikare.health" class="contact-card__link">hello@mikare.health</a>
         </div>
 
         <!-- Clinicians -->
         <div class="contact-card glass glass--edge-lit">
           <h2 class="contact-card__title">Clinicians</h2>
-          <p class="contact-card__blurb">For clinical collaboration and practice inquiries, please contact us:</p>
+          <p class="contact-card__blurb">Partner with us to streamline consultations using tools that instantly convert complex patient narratives into clear, structured information. Please contact us.</p>
           <a href="mailto:hello@mikare.health" class="contact-card__link">hello@mikare.health</a>
         </div>
 
-        <!-- Patients & Families -->
+        <!-- Patients and Families -->
         <div class="contact-card glass glass--edge-lit">
-          <h2 class="contact-card__title">Patients & Families</h2>
-          <p class="contact-card__blurb">We're here to help with questions and support:</p>
+          <h2 class="contact-card__title">Patients and Families</h2>
+          <p class="contact-card__blurb">We are here to help with questions and support, and to help you unify your health story so you can walk into every appointment with confidence, clarity, and proof.</p>
           <a href="mailto:support@mikare.health" class="contact-card__link">support@mikare.health</a>
+        </div>
+
+        <!-- Businesses -->
+        <div class="contact-card glass glass--edge-lit">
+          <h2 class="contact-card__title">Businesses</h2>
+          <p class="contact-card__blurb">Your team are vital to your success. Give your team the wellness tools to keep them ahead of the curve and fully focused.</p>
+          <a href="mailto:hello@mikare.health" class="contact-card__link">hello@mikare.health</a>
         </div>
       </div>
 
@@ -56,26 +62,15 @@ import SocialLinks from '../components/SocialLinks.astro';
 </Layout>
 
 <style>
-  .section-intro {
-    text-align: center;
-    margin-bottom: var(--space-8);
-  }
-
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
     max-width: 1000px;
     margin-inline: auto;
   }
 
-  @media (max-width: 900px) {
-    .contact-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .contact-grid {
       grid-template-columns: 1fr;
     }
@@ -110,6 +105,7 @@ import SocialLinks from '../components/SocialLinks.astro';
     color: var(--text-muted);
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-4);
+    text-align: left;
   }
 
   .contact-card__link {
@@ -136,5 +132,4 @@ import SocialLinks from '../components/SocialLinks.astro';
     font-weight: 600;
     margin-bottom: var(--space-6);
   }
-
 </style>

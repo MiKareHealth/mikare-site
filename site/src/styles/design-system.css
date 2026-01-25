@@ -804,7 +804,6 @@ strong, b {
     var(--bg-secondary) 0%,
     var(--bg) 100%
   );
-  border-bottom: 1px solid var(--border);
 }
 
 .page-header__title {
