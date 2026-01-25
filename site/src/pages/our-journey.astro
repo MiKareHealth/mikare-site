@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import InfoMap from '../components/InfoMap.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Layout title="Our Journey" description="MiKare Health was born from lived experience - 21 emergency room visits, 30 doctors misdiagnosing, 200 seizures and a diagnosis that wasn't right.">
@@ -102,6 +103,15 @@ import InfoMap from '../components/InfoMap.astro';
     </div>
   </section>
 
+  <!-- Trial Banner -->
+  <section class="section trial-section">
+    <div class="container">
+      <a href="https://apps.apple.com/us/app/mikare-health/id6755099048" target="_blank" rel="noopener noreferrer" class="trial-banner glass glass--edge-lit">
+        <span class="trial-banner__title">Download the app and receive 7 day free trial</span>
+      </a>
+    </div>
+  </section>
+
   <!-- Founder Quote -->
   <section class="quote-block">
     <div class="container">
@@ -172,6 +182,51 @@ import InfoMap from '../components/InfoMap.astro';
 
     .story-section .story-section__content {
       order: 0;
+    }
+  }
+
+  /* Trial Banner Section - tight padding since banner has internal padding */
+  .trial-section {
+    padding-top: 0;
+    padding-bottom: var(--space-8);
+  }
+
+  .trial-banner {
+    display: block;
+    padding: var(--space-12) var(--space-10);
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-2xl);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .trial-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--accent-dim);
+    border-color: var(--accent);
+  }
+
+  .trial-banner__title {
+    display: block;
+    margin: 0;
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    font-family: var(--font-serif);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trial-banner {
+      transition: none;
+    }
+
+    .trial-banner:hover {
+      transform: none;
     }
   }
 </style>

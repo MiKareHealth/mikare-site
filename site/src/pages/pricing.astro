@@ -12,19 +12,24 @@ import InfoMap from '../components/InfoMap.astro';
   <!-- Pricing Content -->
   <section class="section">
     <div class="container">
-      <a href="https://apps.apple.com/us/app/mikare-health/id6755099048" target="_blank" rel="noopener noreferrer" class="trial-banner glass glass--edge-lit">
-        <span class="trial-banner__title">Download the app and receive 7 day free trial</span>
-      </a>
-
-      <!-- Introductory Rate Callout -->
-      <div class="intro-rate-callout">
-        <span class="intro-rate-callout__badge">Limited Time</span>
-        <p class="intro-rate-callout__text">Introductory rates until 28 Feb 2026</p>
-      </div>
-
       <div class="section-intro">
         <h2>Choose Your Plan</h2>
         <InfoMap variant="section" />
+      </div>
+
+      <!-- Introductory Rate Callout -->
+      <div class="intro-rate-callout">
+        <div class="intro-rate-callout__particle intro-rate-callout__particle--1"></div>
+        <div class="intro-rate-callout__particle intro-rate-callout__particle--2"></div>
+        <div class="intro-rate-callout__particle intro-rate-callout__particle--3"></div>
+        <div class="intro-rate-callout__particle intro-rate-callout__particle--4"></div>
+        <span class="intro-rate-callout__badge">Limited Time</span>
+        <p class="intro-rate-callout__text">
+          <svg class="intro-rate-callout__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          Introductory rates until 28 Feb 2026
+        </p>
       </div>
 
       <!-- Pricing Table -->
@@ -43,7 +48,7 @@ import InfoMap from '../components/InfoMap.astro';
                 <span class="pricing-table__plan-name">Family</span>
                 <span class="pricing-table__plan-desc">Up to 5 profiles</span>
               </td>
-              <td class="pricing-table__price">$244.99</td>
+              <td class="pricing-table__price">$224.99</td>
               <td class="pricing-table__price">$24.99</td>
             </tr>
             <tr>
@@ -96,76 +101,117 @@ import InfoMap from '../components/InfoMap.astro';
 </Layout>
 
 <style>
-  /* Trial Banner - clickable, larger, centered */
-  .trial-banner {
-    display: block;
-    padding: var(--space-12) var(--space-10);
-    text-align: center;
-    max-width: 800px;
-    margin-inline: auto;
-    margin-bottom: var(--space-8);
-    text-decoration: none;
-    color: inherit;
-    border-radius: var(--radius-2xl);
-    transition:
-      transform var(--transition-fast),
-      box-shadow var(--transition-fast),
-      border-color var(--transition-fast);
-  }
-
-  .trial-banner:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg), 0 0 30px var(--accent-dim);
-    border-color: var(--accent);
-  }
-
-  .trial-banner__title {
-    display: block;
-    margin: 0;
-    font-size: var(--text-2xl);
-    font-weight: 600;
-    font-family: var(--font-serif);
-  }
-
-  /* Introductory Rate Callout */
+  /* Introductory Rate Callout - Floating Particles */
   .intro-rate-callout {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    padding: var(--space-4) var(--space-6);
-    margin-bottom: var(--space-12);
-    max-width: 500px;
+    padding: var(--space-5) var(--space-8);
+    max-width: 520px;
     margin-inline: auto;
-    background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 100%);
-    border: 1px solid var(--accent);
+    margin-bottom: var(--space-10);
+    background: linear-gradient(
+      90deg,
+      rgba(209, 48, 127, 0.06) 0%,
+      rgba(45, 212, 191, 0.06) 100%
+    );
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     position: relative;
     overflow: hidden;
   }
 
-  .intro-rate-callout::before {
-    content: '';
+  /* Floating particles */
+  .intro-rate-callout__particle {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.15),
-      transparent
-    );
-    animation: shimmer-callout 3s ease-in-out infinite;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.15;
+    filter: blur(1px);
   }
 
-  @keyframes shimmer-callout {
-    0% {
-      left: -100%;
+  .intro-rate-callout__particle--1 {
+    width: 40px;
+    height: 40px;
+    background: var(--brand-magenta, #d1307f);
+    top: -10px;
+    left: 10%;
+    animation: float-1 25s ease-in-out infinite;
+  }
+
+  .intro-rate-callout__particle--2 {
+    width: 30px;
+    height: 30px;
+    background: var(--brand-teal, #2dd4bf);
+    bottom: -5px;
+    right: 15%;
+    animation: float-2 30s ease-in-out infinite;
+  }
+
+  .intro-rate-callout__particle--3 {
+    width: 20px;
+    height: 20px;
+    background: var(--brand-navy, #1e3a5f);
+    top: 50%;
+    left: -5px;
+    animation: float-3 20s ease-in-out infinite;
+  }
+
+  .intro-rate-callout__particle--4 {
+    width: 25px;
+    height: 25px;
+    background: var(--brand-magenta, #d1307f);
+    top: 20%;
+    right: 5%;
+    animation: float-4 35s ease-in-out infinite;
+  }
+
+  @keyframes float-1 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
     }
-    50%, 100% {
-      left: 100%;
+    25% {
+      transform: translate(30px, 20px) scale(1.1);
+    }
+    50% {
+      transform: translate(10px, 35px) scale(0.9);
+    }
+    75% {
+      transform: translate(-20px, 15px) scale(1.05);
+    }
+  }
+
+  @keyframes float-2 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-25px, -20px) scale(1.15);
+    }
+    66% {
+      transform: translate(15px, -30px) scale(0.85);
+    }
+  }
+
+  @keyframes float-3 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(40px, -10px) scale(1.2);
+    }
+  }
+
+  @keyframes float-4 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(-15px, 25px) scale(0.9);
+    }
+    75% {
+      transform: translate(-30px, -15px) scale(1.1);
     }
   }
 
@@ -179,13 +225,34 @@ import InfoMap from '../components/InfoMap.astro';
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
     border-radius: var(--radius-md);
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-rate-callout__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
   }
 
   .intro-rate-callout__text {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
     margin: 0;
     font-size: var(--text-lg);
     font-weight: 600;
     color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .intro-rate-callout__particle {
+      animation: none;
+    }
   }
 
   /* Section intro alignment */
@@ -193,11 +260,11 @@ import InfoMap from '../components/InfoMap.astro';
     text-align: center;
     max-width: 700px;
     margin-inline: auto;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-8);
   }
 
   .section-intro h2 {
-    margin-bottom: 0;
+    margin-bottom: var(--space-2);
   }
 
   /* Pricing Table */
@@ -269,6 +336,19 @@ import InfoMap from '../components/InfoMap.astro';
     .intro-rate-callout {
       flex-direction: column;
       text-align: center;
+      gap: var(--space-2);
+      margin-left: var(--space-4);
+      margin-right: var(--space-4);
+      padding: var(--space-4) var(--space-6);
+    }
+
+    .intro-rate-callout__text {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .intro-rate-callout__particle {
+      opacity: 0.1;
     }
   }
 
