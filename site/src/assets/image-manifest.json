@@ -1,36 +1,36 @@
 {
   "/": {
     "hero-background": {
-      "url": "https://mikare.health/wp-content/uploads/2025/06/header-image.jpg",
+      "url": "/images/header-image.jpg",
       "alt": "",
       "loading": "eager"
     }
   },
   "/mikareapp": {
     "app-icon": {
-      "url": "https://mikare.health/wp-content/uploads/2025/11/2.-Icon.png",
+      "url": "/images/app-icon.png",
       "alt": "",
       "loading": "lazy"
     }
   },
   "/our-journey": {
     "meeka-mikaela-1": {
-      "url": "https://mikare.health/wp-content/uploads/2025/06/Meeka-with-Mikaela.png",
+      "url": "/images/meeka-with-mikaela.png",
       "alt": "",
       "loading": "lazy"
     },
     "meeka-mikaela-2": {
-      "url": "https://mikare.health/wp-content/uploads/2025/06/Meeka-with-Mikaela-2.png",
+      "url": "/images/meeka-with-mikaela-2.png",
       "alt": "",
       "loading": "lazy"
     },
     "app-icon": {
-      "url": "https://mikare.health/wp-content/uploads/2025/11/2.-Icon.png",
+      "url": "/images/app-icon.png",
       "alt": "",
       "loading": "lazy"
     },
     "karen-perks": {
-      "url": "https://mikare.health/wp-content/uploads/2025/06/Karen-perks.jpg",
+      "url": "/images/karen-perks.jpg",
       "alt": "",
       "loading": "lazy"
     }
