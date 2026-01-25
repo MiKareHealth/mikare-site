@@ -44,17 +44,6 @@ import Button from '../components/Button.astro';
           <h2 class="learn-card__title">Insights</h2>
           <p class="learn-card__desc">Thought leadership on healthcare technology, AI, and the future of patient empowerment.</p>
         </a>
-
-        <!-- Businesses -->
-        <a href="/learn/businesses" class="learn-card glass glass--edge-lit">
-          <div class="learn-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
-            </svg>
-          </div>
-          <h2 class="learn-card__title">Businesses</h2>
-          <p class="learn-card__desc">Information for organisations interested in MiKare Health solutions.</p>
-        </a>
       </div>
     </div>
   </section>
@@ -63,15 +52,32 @@ import Button from '../components/Button.astro';
 <style>
   .learn-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
-    max-width: 900px;
+    max-width: 1000px;
     margin-inline: auto;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
+    .learn-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Center the last item if odd number */
+    .learn-grid .learn-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 400px;
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 600px) {
     .learn-grid {
       grid-template-columns: 1fr;
+    }
+
+    .learn-grid .learn-card:last-child:nth-child(odd) {
+      max-width: none;
     }
   }
 
