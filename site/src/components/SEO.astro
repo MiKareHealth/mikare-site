@@ -50,3 +50,31 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap&font-display=swap" rel="stylesheet" />
+
+<!-- Structured Data: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MiKare Health",
+  "url": "https://mikare.health",
+  "logo": "https://mikare.health/images/app-icon.png",
+  "sameAs": [
+    "https://www.instagram.com/mikare_health/",
+    "https://au.linkedin.com/company/mikare-health",
+    "https://x.com/MiKareHealth",
+    "https://www.facebook.com/p/MiKare-Health-61577047037934/",
+    "https://www.tiktok.com/@mikarehealth"
+  ]
+}
+</script>
+
+<!-- Structured Data: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MiKare Health",
+  "url": "https://mikare.health"
+}
+</script>
