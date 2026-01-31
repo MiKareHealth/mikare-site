@@ -37,6 +37,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mikare.health/press</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mikare.health/press-kit</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mikare.health/help</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mikare.health/privacy</loc>
     <priority>0.3</priority>
   </url>
