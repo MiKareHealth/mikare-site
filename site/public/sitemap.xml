@@ -56,4 +56,16 @@
     <loc>https://mikare.health/terms</loc>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://mikare.health/privacy-policy</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mikare.health/delete-account</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mikare.health/delete-data</loc>
+    <priority>0.3</priority>
+  </url>
 </urlset>

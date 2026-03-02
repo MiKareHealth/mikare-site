@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Delete Your Account | MiKare Health" description="Request deletion of your MiKare Health account and associated data. Learn what data will be removed and how to submit a deletion request.">
+  <!-- Hero Section -->
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-header__title animate-fade-in-up">Account Deletion</h1>
+      <p class="page-header__subtitle animate-fade-in-up" style="animation-delay: 0.15s;">
+        Request deletion of your MiKare account
+      </p>
+    </div>
+  </section>
+
+  <!-- Account Deletion Content -->
+  <section class="section" style="background: var(--bg-secondary); padding-top: var(--space-16);">
+    <div class="container">
+      <div class="prose">
+        <p>At <strong>MIKARE HEALTH PTY LTD</strong>, we respect your right to control your personal data. If you would like to delete your MiKare account, you can do so using the options below.</p>
+
+        <h2 class="prose__heading">What Happens When You Delete Your Account</h2>
+        <p>When your account deletion request is processed, the following data will be permanently removed:</p>
+        <ul>
+          <li><strong>Personal information</strong> — your name, email address, and login credentials</li>
+          <li><strong>Health and wellness data</strong> — health notes, medical documents, symptoms, and care information</li>
+          <li><strong>Preferences and settings</strong> — app preferences, notification settings, and personalisation data</li>
+          <li><strong>Activity history</strong> — usage history and interaction records</li>
+        </ul>
+
+        <h2 class="prose__heading">Data Retention After Deletion</h2>
+        <p>Some data may be retained for a limited period after your account is deleted:</p>
+        <ul>
+          <li><strong>Legal and compliance records</strong> may be retained for up to 30 days as required by applicable laws and regulations</li>
+          <li><strong>Anonymised usage data</strong> (which cannot identify you) may be retained for analytics and service improvement purposes</li>
+          <li><strong>Payment records</strong> managed by Apple or Google may be subject to their respective retention policies</li>
+        </ul>
+
+        <h2 class="prose__heading">How to Delete Your Account</h2>
+        <p>You can request account deletion in two ways:</p>
+
+        <p><strong>Option 1: In the MiKare app</strong></p>
+        <p>Navigate to Settings &gt; Account &gt; Delete Account and follow the prompts.</p>
+
+        <p><strong>Option 2: Submit a request below</strong></p>
+        <p>Use the form below, or email us directly at <a href="mailto:support@mikare.health">support@mikare.health</a> with the subject line "Account Deletion Request".</p>
+      </div>
+
+      <!-- Deletion Request Form -->
+      <div class="form-wrapper">
+        <form class="deletion-form glass glass--edge-lit" id="account-deletion-form">
+          <h2 class="form-title">Account Deletion Request</h2>
+
+          <div class="form-group">
+            <label class="label label--required" for="email">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="The email associated with your MiKare account" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label class="label" for="reason">Reason for deletion (optional)</label>
+            <select id="reason" name="reason" class="form-input">
+              <option value="">Select a reason...</option>
+              <option value="no-longer-using">I no longer use the app</option>
+              <option value="privacy-concerns">Privacy concerns</option>
+              <option value="switching-service">Switching to another service</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">Submit Deletion Request</button>
+
+          <p class="form-note">We will process your request within 30 days and send a confirmation to your email address.</p>
+        </form>
+      </div>
+
+      <div class="prose" style="margin-top: var(--space-12);">
+        <h2 class="prose__heading">Need Help?</h2>
+        <p>If you have questions about account deletion or need assistance, contact us at <a href="mailto:support@mikare.health">support@mikare.health</a>.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('account-deletion-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const reason = (document.getElementById('reason') as HTMLSelectElement).value;
+    const subject = encodeURIComponent('Account Deletion Request');
+    const body = encodeURIComponent(
+      `I would like to request deletion of my MiKare account.\n\nEmail: ${email}\nReason: ${reason || 'Not specified'}`
+    );
+    window.location.href = `mailto:support@mikare.health?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<style>
+  .form-wrapper {
+    max-width: var(--max-width-prose);
+    margin-inline: auto;
+    margin-top: var(--space-12);
+  }
+
+  .deletion-form {
+    padding: var(--space-10);
+    border-radius: var(--radius-2xl);
+  }
+
+  .form-title {
+    font-size: var(--text-2xl);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: var(--space-8);
+  }
+
+  .form-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-fast);
+    min-height: 44px;
+  }
+
+  .form-input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-10);
+  }
+
+  .btn--full {
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  .form-note {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+  }
+</style>

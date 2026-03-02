@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Delete Your Data | MiKare Health" description="Request deletion of specific data from your MiKare Health account without deleting your entire account. Choose which data types to remove.">
+  <!-- Hero Section -->
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-header__title animate-fade-in-up">Data Deletion</h1>
+      <p class="page-header__subtitle animate-fade-in-up" style="animation-delay: 0.15s;">
+        Request deletion of specific data from your account
+      </p>
+    </div>
+  </section>
+
+  <!-- Data Deletion Content -->
+  <section class="section" style="background: var(--bg-secondary); padding-top: var(--space-16);">
+    <div class="container">
+      <div class="prose">
+        <p>At <strong>MIKARE HEALTH PTY LTD</strong>, we believe you should have full control over your data. You can request deletion of specific data types from your MiKare account without needing to delete your entire account.</p>
+
+        <h2 class="prose__heading">Data You Can Request to Delete</h2>
+        <p>You can choose to delete any of the following data types:</p>
+        <ul>
+          <li><strong>Health and wellness data</strong> — health notes, medical documents, symptoms, and care information you have uploaded or recorded</li>
+          <li><strong>Activity history</strong> — your app usage history and interaction records</li>
+          <li><strong>Personal preferences</strong> — app settings, notification preferences, and personalisation data</li>
+          <li><strong>Usage analytics</strong> — behavioural and usage data collected during your use of the app</li>
+        </ul>
+
+        <h2 class="prose__heading">What to Know Before Requesting</h2>
+        <ul>
+          <li>Deleted data cannot be recovered once the request has been processed</li>
+          <li>Your account and login credentials will remain active</li>
+          <li>Some data may be retained for up to 30 days to fulfil legal and compliance requirements</li>
+          <li>Requests are typically processed within 30 days</li>
+        </ul>
+
+        <p>To delete your entire account and all associated data, visit our <a href="/delete-account">Account Deletion</a> page instead.</p>
+      </div>
+
+      <!-- Data Deletion Request Form -->
+      <div class="form-wrapper">
+        <form class="deletion-form glass glass--edge-lit" id="data-deletion-form">
+          <h2 class="form-title">Data Deletion Request</h2>
+
+          <div class="form-group">
+            <label class="label label--required" for="email">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="The email associated with your MiKare account" class="form-input" />
+          </div>
+
+          <fieldset class="form-group form-fieldset">
+            <legend class="label label--required">Data types to delete</legend>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="data_types" value="health-data" class="checkbox-input" />
+                <span>Health and wellness data</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="data_types" value="activity-history" class="checkbox-input" />
+                <span>Activity history</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="data_types" value="preferences" class="checkbox-input" />
+                <span>Personal preferences</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="data_types" value="analytics" class="checkbox-input" />
+                <span>Usage analytics</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label class="label" for="details">Additional details (optional)</label>
+            <textarea id="details" name="details" rows="3" placeholder="Any additional information about your request..." class="form-input form-textarea"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">Submit Deletion Request</button>
+
+          <p class="form-note">We will process your request within 30 days and send a confirmation to your email address.</p>
+        </form>
+      </div>
+
+      <div class="prose" style="margin-top: var(--space-12);">
+        <h2 class="prose__heading">Alternative Contact</h2>
+        <p>You can also submit a data deletion request by emailing <a href="mailto:support@mikare.health">support@mikare.health</a> with the subject line "Data Deletion Request". Please include your account email and the types of data you would like deleted.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('data-deletion-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const details = (document.getElementById('details') as HTMLTextAreaElement).value;
+    const checkboxes = form.querySelectorAll<HTMLInputElement>('input[name="data_types"]:checked');
+    const dataTypes = Array.from(checkboxes).map((cb) => cb.parentElement?.textContent?.trim()).join(', ');
+
+    if (!dataTypes) {
+      alert('Please select at least one data type to delete.');
+      return;
+    }
+
+    const subject = encodeURIComponent('Data Deletion Request');
+    const body = encodeURIComponent(
+      `I would like to request deletion of specific data from my MiKare account.\n\nEmail: ${email}\nData types to delete: ${dataTypes}\nAdditional details: ${details || 'None'}`
+    );
+    window.location.href = `mailto:support@mikare.health?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<style>
+  .form-wrapper {
+    max-width: var(--max-width-prose);
+    margin-inline: auto;
+    margin-top: var(--space-12);
+  }
+
+  .deletion-form {
+    padding: var(--space-10);
+    border-radius: var(--radius-2xl);
+  }
+
+  .form-title {
+    font-size: var(--text-2xl);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-bottom: var(--space-8);
+  }
+
+  .form-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-fast);
+    min-height: 44px;
+  }
+
+  .form-input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    cursor: pointer;
+    min-height: 44px;
+  }
+
+  .checkbox-input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .btn--full {
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  .form-note {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+  }
+</style>
