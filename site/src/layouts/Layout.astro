@@ -114,6 +114,26 @@ const currentPath = Astro.url.pathname;
     </main>
     <Footer />
     <Analytics />
+    <script>
+      import { track } from '@vercel/analytics';
+
+      document.addEventListener('click', function (e) {
+        const el = (e.target as HTMLElement).closest('[data-track]');
+        if (!el) return;
+
+        const event = el.getAttribute('data-track');
+        if (!event) return;
+
+        const props: Record<string, string> = {};
+        for (const attr of el.attributes) {
+          if (attr.name.startsWith('data-track-') && attr.value) {
+            props[attr.name.replace('data-track-', '')] = attr.value;
+          }
+        }
+
+        track(event, props);
+      });
+    </script>
   </body>
 </html>
 
